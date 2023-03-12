@@ -18,24 +18,56 @@ body {
     background-color:#F1C6CA;
 }
 
+.filter-label {
+    font-size: xx-large;
+    font-style: italic;
+    vertical-align: middle;
+    margin-left: 10px;
+    padding: 10px;
+}
+
 .square-button {
-    background-color: #ddd;
+    background-color: #BB2F3D;
+    color: white;
     text-align: center;
     padding: 0.5em;
     margin: 0;
     width: 40px;
     height: 40px;
+    border-radius: 4px;
+}
+
+.rec-button {
+    background-color: #ccc;
+    color: black;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0;
+    width: 80px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.square-button:hover, .rec-button:hover {
+    background-color:#E28D95 !important;
+    color: white !important;
+}
+
+.square-button:active, .rec-button:active {
+    background-color:#ddd !important;
+    color: black !important;
 }
 
 #jv-buttons {
-    display: grid;
-    grid-template-columns: repeat(7, 40px);
+    display: inline-grid;
+    vertical-align: middle;
+    grid-template-columns: 80px repeat(7, 40px);
     column-gap: 2px;
     row-gap: 2px;
 }
 
 #pattern-list {
-    background-color:#F1C6CA;
+    background-color:#ddd;
     overflow-y: auto;
     float: left;
     width: 150px;

@@ -74,7 +74,8 @@ function consonances(i, j) {
 
 for (let i = 0; i < 256; i++) {
     const para = document.createElement("p");
-    para.className = 'pattern'
+    para.className = 'pattern';
+    para.id = "pattern" + i;
     para.onclick = function () {
         // Show pattern name
         const patName = document.getElementById('pattern-name');
@@ -111,6 +112,71 @@ for (let i = 0; i < 256; i++) {
 
     const element = document.getElementById("pattern-list");
     element.appendChild(para);
+}
+
+// set up array to track JJv filtering
+let jvFlag = new Array(14);
+for (let i = 0; i <= 13; i++) {
+    jvFlag[i] = true;
+}
+
+// toggle the state of given Jv filters
+function jvToggle(x) {
+    jvFlag[x] = !jvFlag[x];
+    applyJv();
+    jvButtonUpdate();
+}
+
+// hides/shows patterns based on JJv flags
+function applyJv() {
+    for (let i = 0; i < 256; i++) {
+        let thisPat = document.getElementById("pattern" + i);
+        if(filterJv(i)) {
+            thisPat.style.display = "block";
+        } else {
+            thisPat.style.display = "none";
+        }
+    }
+}
+
+function jvButtonUpdate() {
+    for (let i = 0; i <= 13; i++) {
+        buttonCol = document.getElementById("jv-" + i)
+        if (jvFlag[i]) {
+            buttonCol.style.backgroundColor = "#BB2F3D";
+            buttonCol.style.color = "white";
+        } else {
+            buttonCol.style.backgroundColor = "#ccc";
+            buttonCol.style.color = "black";
+        }
+    }
+}
+
+// returns true if a given pattern matches the currently toggled JJv, else false
+function filterJv(x) {
+    for (let i = 0; i <= 13; i++) {
+        if(pat[x].jv === 0 - i && jvFlag[i])
+            return true;
+    }
+    return false;
+}
+
+// set all Jv toggles to off
+function jvNone() {
+    for (let i = 0; i <= 13; i++) {
+        jvFlag[i] = false;
+    }
+    applyJv();
+    jvButtonUpdate();
+}
+
+// set all Jv toggles to on
+function jvAll() {
+    for (let i = 0; i <= 13; i++) {
+        jvFlag[i] = true;
+    }
+    applyJv();
+    jvButtonUpdate();
 }
 
 // turns pattern array into formatted hexcode string
