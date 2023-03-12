@@ -1,0 +1,135 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans";
+    font-weight: 700;
+    font-size:medium;
+    cursor: default;
+    margin: 0;
+    padding: 0;
+}
+
+#filter-list {
+    height: auto;
+    width: 100%;
+    padding: 10px 0;
+    background-color:#F1C6CA;
+}
+
+.square-button {
+    background-color: #ddd;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+}
+
+#jv-buttons {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    column-gap: 2px;
+    row-gap: 2px;
+}
+
+#pattern-list {
+    background-color:#F1C6CA;
+    overflow-y: auto;
+    float: left;
+    width: 150px;
+    height: 400px;
+}
+
+#info {
+    background-color:#eee;
+    display: inline-block;
+    width: calc(100% - 150px);
+    height: 400px;
+    position: relative;
+}
+
+#pattern-name {
+    margin: 20px;
+}
+
+.param {
+    margin: 0px;
+}
+
+.param1, .param2, .param3, .param4 {
+    position: absolute;
+}
+
+.param1 {
+    top: 72px;
+}
+
+.param2 {
+    top: 102px;
+}
+
+.param3 {
+    top: 132px;
+}
+
+.param4 {
+    top: 162px;
+}
+
+.vspace {
+    display: inline-block;
+    height: 20px;
+}
+
+.param-name {
+    margin: 0 0 0 20px;
+}
+
+.param-name span {
+    font-weight: normal;
+}
+
+.pattern:nth-of-type(even) {
+    background-color: #ddd;
+}
+
+.pattern:nth-of-type(odd) {
+    background-color: #eee;
+}
+
+.pattern {
+    margin: 0;
+    padding: 0.6em 1.2em;
+}
+
+.pattern:hover {
+    background-color: #F1C6CA;
+    color: black;
+}
+
+.pattern:active {
+    background-color: #D55864;
+    color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
