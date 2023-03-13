@@ -61,7 +61,7 @@ function consonances(i, j) {
             oswap: oswap_gen([i, j, k, n]),
             seqs: getseqs([i, j, k, n])
         });
-
+        
         count++;
     }
 }
@@ -339,8 +339,6 @@ function getseqs(pat) {
     	[ 0 ],
     	[ -2, -4 ]
     ];
-	// storage for the number of elements in possroot[n][]
-	const size = [ 3, 0, 2, 1, 1, 2 ];
 
 	// first and second half of root pattern
 	let a, b;
@@ -348,9 +346,7 @@ function getseqs(pat) {
 	let x = pat[2];
 	let y = pat[3];
     // for storing seqs temporarily
-    let seqs = new Array(6);
-	// for storing and comparing patterns to avoid duplication
-    let scount = 0;
+    let seqs = [];
 
 	// reduce consonances to simple positive ints
 	while (x < 0)
@@ -361,33 +357,40 @@ function getseqs(pat) {
 	y %= 7;
 
 	// work out all possible root sequences
-	for (let i = 0; i < size[x]; i++) {
-		for (let j = 0; j < size[y]; j++) {
+	for (let i = 0; i < possroot[x].length; i++) {
+		for (let j = 0; j < possroot[y].length; j++) {
 			// set values for first and second half of root sequence
-			a = pat[0] + possroot[y][i] - possroot[x][j];
+			a = pat[0] + possroot[y][j] - possroot[x][i];
 			b = pat[0] + pat[1] - a;
 			// process intervals
 			[a, b] = cleanseq(a, b);
+
             // check if sequence is already listed
             let dupe = false;
-            for (let k = scount; k > 0; k -= 2) {
+            for (let k = seqs.length; k > 0; k -= 2) {
                 if ((k >= 2 && a === seqs[k-2] && b === seqs[k-1])) {
                     dupe = true;
+                    break;
                 }
             }
             // sequence is unique: save intervals
             if (!dupe) {
-                seqs[scount] = a;
-                seqs[scount + 1] = b;
-                // increase count ready for next sequence (or recall if complete)
-                scount += 2;
+                seqs.push(a);
+                seqs.push(b);
             }
 		}
 	}
 	// sort sequences if not correctly ordered
-	sortseqs(seqs, 6, scount);
+	sortseqs(seqs);
 
-    return seqs;
+    switch (seqs.length) {
+        case 2:
+            return [[seqs[0], seqs[1]]];
+        case 4:
+            return [[seqs[0], seqs[1]], [seqs[2], seqs[3]]];
+        case 6:
+            return [[seqs[0], seqs[1]], [seqs[2], seqs[3]], [seqs[4], seqs[5]]];
+    }
 }
 
 // clean up the intervals in generated root sequence models
@@ -457,7 +460,8 @@ function invert(n) {
 }
 
 // bubble sorts sequences stored in array string
-function sortseqs(a, len, count) {
+function sortseqs(a) {
+    let count = a.length;
 	let swap;
 	
 	// check if int 1 of each seq is larger than the seq before, swaps if true
@@ -475,4 +479,41 @@ function sortseqs(a, len, count) {
 	for (let i = count - 2; i >= 2; i -= 2)
 		if (a[i] > a[i-2])
 			sortseqs(a, 4, count);	
+}
+
+// convert s[].seqs[] short array to char string
+function stringseqs(a) {
+	let str = "";
+    let count = a.length;
+
+	for (let i = 0; i <= count - 2; i += 2) {
+		// FIRST INT CASES
+		// first int is greater than zero
+		if (a[i] > 0) {
+			str = "U";
+			str += a[i];
+		// first int is negative
+		} else if (a[i] < 0) {
+			str = "D";
+			str += Math.abs(a[i]);
+		// first int is zero
+		} else {
+			str = "S";
+		}
+		// SECOND INT CASES
+		// second int is greater than zero
+		if (a[i+1] > 0)
+		{
+			str += "U";
+			str += a[i+1];
+		// second int is less than zero
+		} else if (a[i+1] < 0) {
+			str += "D";
+			str += Math.abs(a[i+1]);
+		// second int is zero
+		} else {
+			str += "S";
+		}
+	}
+	return str;
 }
