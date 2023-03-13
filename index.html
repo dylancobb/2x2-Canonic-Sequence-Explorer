@@ -5,74 +5,89 @@
     <!-- Basic Metadata -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Canonic Sequence Test</title>
+    <title>2x2 Canonic Sequence Tool</title>
+    <meta name="description"
+        content="This is a tool to explore 2x2 note-against-note canonic sequences, and filter them by various characteristics.">
+    <meta name="author" content="Hex">
+    <!-- Favicons and Touch Icons -->
+    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <!-- Stylesheets and Scripts -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans:300,400,700,800">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Domine:300,400,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans:400,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Domine">
 </head>
 
 <body>
-    <div id="filter-list">
-        <span class="filter-label">JJv</span>
-        <div id="jv-buttons">
-            <p class="rec-button" id="jv-none" onclick="jvNone()">None</p>
-            <p class="square-button" id="jv-0" onclick="jvToggle(0)">0</p>
-            <p class="square-button" id="jv-1" onclick="jvToggle(1)">-1</p>
-            <p class="square-button" id="jv-2" onclick="jvToggle(2)">-2</p>
-            <p class="square-button" id="jv-3" onclick="jvToggle(3)">-3</p>
-            <p class="square-button" id="jv-4" onclick="jvToggle(4)">-4</p>
-            <p class="square-button" id="jv-5" onclick="jvToggle(5)">-5</p>
-            <p class="square-button" id="jv-6" onclick="jvToggle(6)">-6</p>
-            <p class="rec-button" id="jv-all" onclick="jvAll()">All</p>
-            <p class="square-button" id="jv-7" onclick="jvToggle(7)">-7</p>
-            <p class="square-button" id="jv-8" onclick="jvToggle(8)">-8</p>
-            <p class="square-button" id="jv-9" onclick="jvToggle(9)">-9</p>
-            <p class="square-button" id="jv-10" onclick="jvToggle(10)">-10</p>
-            <p class="square-button" id="jv-11" onclick="jvToggle(11)">-11</p>
-            <p class="square-button" id="jv-12" onclick="jvToggle(12)">-12</p>
-            <p class="square-button" id="jv-13" onclick="jvToggle(13)">-13</p>
+    <header>
+        <a href="https://hexmusictheory.com/" target="_blank">
+            <img src="images/Logo.png" alt="Hex Music Theory logo" height="100" id="logo" /></a>
+        <span id="page-title">2x2 Canonic Sequences</span>
+    </header>
+    <main>
+        <div id="filter-list">
+            <span class="filter-label">Jv</span>
+            <div id="jv-buttons">
+                <p class="rec-button" id="jv-none" onclick="jvNone()">None</p>
+                <p class="square-button" id="jv-0" onclick="jvToggle(0)">0</p>
+                <p class="square-button" id="jv-1" onclick="jvToggle(1)">-1</p>
+                <p class="square-button" id="jv-2" onclick="jvToggle(2)">-2</p>
+                <p class="square-button" id="jv-3" onclick="jvToggle(3)">-3</p>
+                <p class="square-button" id="jv-4" onclick="jvToggle(4)">-4</p>
+                <p class="square-button" id="jv-5" onclick="jvToggle(5)">-5</p>
+                <p class="square-button" id="jv-6" onclick="jvToggle(6)">-6</p>
+                <p class="rec-button" id="jv-all" onclick="jvAll()">All</p>
+                <p class="square-button" id="jv-7" onclick="jvToggle(7)">-7</p>
+                <p class="square-button" id="jv-8" onclick="jvToggle(8)">-8</p>
+                <p class="square-button" id="jv-9" onclick="jvToggle(9)">-9</p>
+                <p class="square-button" id="jv-10" onclick="jvToggle(10)">-10</p>
+                <p class="square-button" id="jv-11" onclick="jvToggle(11)">-11</p>
+                <p class="square-button" id="jv-12" onclick="jvToggle(12)">-12</p>
+                <p class="square-button" id="jv-13" onclick="jvToggle(13)">-13</p>
+            </div>
         </div>
-    </div>
-    <div id="pattern-list"></div><div id="info">
-        <h2 id="pattern-name">Pattern Name</h2>
-        <span class="param param1">
-            <p class="param-name">
-                <span class="vspace"></span>Elaborates at: 
-                <span id="jv"></span>
-            </p>
-        </span>
-        <span class="param param2">
-            <p class="param-name">
-                <span class="vspace"></span>Entry intervals: 
-                <span id="entry"></span>
-            </p>
-        </span>
-        <span class="param param3">
-            <p class="param-name">
-                <span class="vspace"></span>Alias: 
-                <span id="alias"></span>
-            </p>
-        </span>
-        <span class="param param4">
-            <p class="param-name">
-                <span class="vspace"></span>Retrograde: 
-                <span id="retro"></span>
-            </p>
-        </span>
-        <span class="param param5">
-            <p class="param-name">
-                <span class="vspace"></span>Note Swap: 
-                <span id="nswap"></span>
-            </p>
-        </span>
-        <span class="param param6">
-            <p class="param-name">
-                <span class="vspace"></span>Octave Swap: 
-                <span id="oswap"></span>
-            </p>
-        </span>
-    </div>
+        <div id="pattern-list"></div>
+        <div id="info">
+            <h2 id="pattern-name">Pattern Name</h2>
+            <span class="param param1">
+                <p class="param-name">
+                    <span class="vspace"></span>Elaborates at:
+                    <span id="jv"></span>
+                </p>
+            </span>
+            <span class="param param2">
+                <p class="param-name">
+                    <span class="vspace"></span>Entry Intervals:
+                    <span id="entry"></span>
+                </p>
+            </span>
+            <span class="param param3">
+                <p class="param-name">
+                    <span class="vspace"></span>Alias:
+                    <span id="alias"></span>
+                </p>
+            </span>
+            <span class="param param4">
+                <p class="param-name">
+                    <span class="vspace"></span>Retrograde:
+                    <span id="retro"></span>
+                </p>
+            </span>
+            <span class="param param5">
+                <p class="param-name">
+                    <span class="vspace"></span>Note Swap:
+                    <span id="nswap"></span>
+                </p>
+            </span>
+            <span class="param param6">
+                <p class="param-name">
+                    <span class="vspace"></span>Octave Swap:
+                    <span id="oswap"></span>
+                </p>
+            </span>
+        </div>
+    </main>
     <script src="2x2.js"></script>
 </body>
 

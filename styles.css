@@ -11,6 +11,21 @@ body {
     padding: 0;
 }
 
+main {
+    margin-top: -10px;
+}
+
+#logo {
+    vertical-align: middle;
+}
+
+#page-title {
+    vertical-align: middle;
+    padding-left: 10px;
+    font-family: "Domine";
+    font-size: 32pt;
+}
+
 #filter-list {
     height: auto;
     width: 100%;
