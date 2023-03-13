@@ -27,24 +27,66 @@
     </header>
     <main>
         <div id="filter-list">
-            <span class="filter-label">Jv</span>
-            <div id="jv-buttons">
-                <p class="rec-button" id="jv-none" onclick="jvNone()">None</p>
-                <p class="square-button" id="jv-0" onclick="jvToggle(0)">0</p>
-                <p class="square-button" id="jv-1" onclick="jvToggle(1)">-1</p>
-                <p class="square-button" id="jv-2" onclick="jvToggle(2)">-2</p>
-                <p class="square-button" id="jv-3" onclick="jvToggle(3)">-3</p>
-                <p class="square-button" id="jv-4" onclick="jvToggle(4)">-4</p>
-                <p class="square-button" id="jv-5" onclick="jvToggle(5)">-5</p>
-                <p class="square-button" id="jv-6" onclick="jvToggle(6)">-6</p>
-                <p class="rec-button" id="jv-all" onclick="jvAll()">All</p>
-                <p class="square-button" id="jv-7" onclick="jvToggle(7)">-7</p>
-                <p class="square-button" id="jv-8" onclick="jvToggle(8)">-8</p>
-                <p class="square-button" id="jv-9" onclick="jvToggle(9)">-9</p>
-                <p class="square-button" id="jv-10" onclick="jvToggle(10)">-10</p>
-                <p class="square-button" id="jv-11" onclick="jvToggle(11)">-11</p>
-                <p class="square-button" id="jv-12" onclick="jvToggle(12)">-12</p>
-                <p class="square-button" id="jv-13" onclick="jvToggle(13)">-13</p>
+            <div id="filter-select">
+                <p class="rec-button" id="jv-toggle" onclick="showJv()"><em>Jv</em></p>
+                <p class="rec-button" id="entry-toggle" onclick="showEntry()">Entry</p>
+                <p class="rec-button" id="model-toggle" onclick="showModel()">Model</p>
+                <p class="rec-button" id="vp-toggle" onclick="showVP()">VP</p>
+                <p class="rec-button" id="root-toggle" onclick="showRoot()">Root</p>
+                <p class="rec-blank"></p>
+            </div>
+            <div id="jv-filter">
+                <span class="filter-label"><em>Jv</em></span>
+                <div id="jv-buttons">
+                    <p class="rec-button" id="jv-none" onclick="jvNone()">None</p>
+                    <p class="square-button" id="jv-0" onclick="jvToggle(0)">0</p>
+                    <p class="square-button" id="jv-1" onclick="jvToggle(1)">-1</p>
+                    <p class="square-button" id="jv-2" onclick="jvToggle(2)">-2</p>
+                    <p class="square-button" id="jv-3" onclick="jvToggle(3)">-3</p>
+                    <p class="square-button" id="jv-4" onclick="jvToggle(4)">-4</p>
+                    <p class="square-button" id="jv-5" onclick="jvToggle(5)">-5</p>
+                    <p class="square-button" id="jv-6" onclick="jvToggle(6)">-6</p>
+                    <p class="rec-button" id="jv-all" onclick="jvAll()">All</p>
+                    <p class="square-button" id="jv-7" onclick="jvToggle(7)">-7</p>
+                    <p class="square-button" id="jv-8" onclick="jvToggle(8)">-8</p>
+                    <p class="square-button" id="jv-9" onclick="jvToggle(9)">-9</p>
+                    <p class="square-button" id="jv-10" onclick="jvToggle(10)">-10</p>
+                    <p class="square-button" id="jv-11" onclick="jvToggle(11)">-11</p>
+                    <p class="square-button" id="jv-12" onclick="jvToggle(12)">-12</p>
+                    <p class="square-button" id="jv-13" onclick="jvToggle(13)">-13</p>
+                </div>
+            </div>
+            <div id="entry-filter">
+                <span class="filter-label">Entry</span>
+                <div id="entry-buttons">
+                    <p class="rec-button" id="entry-none" onclick="entryNone()">None</p>
+                    <p class="entry-button tall" id="entry-0" onclick="entryToggle(0)">→0</p>
+                    <p class="entry-button" id="entry-1" onclick="entryToggle(1)">↗1</p>
+                    <p class="entry-button" id="entry-2" onclick="entryToggle(2)">↗2</p>
+                    <p class="entry-button" id="entry-3" onclick="entryToggle(3)">↗3</p>
+                    <p class="entry-button" id="entry-4" onclick="entryToggle(4)">↗4</p>
+                    <p class="entry-button" id="entry-5" onclick="entryToggle(5)">↗5</p>
+                    <p class="entry-button" id="entry-6" onclick="entryToggle(6)">↗6</p>
+                    <p class="entry-button" id="entry-7" onclick="entryToggle(7)">↗7</p>
+                    <p class="entry-button" id="entry-8" onclick="entryToggle(8)">↗8</p>
+                    <p class="entry-button" id="entry-9" onclick="entryToggle(9)">↗9</p>
+                    <p class="entry-button wide-entry" id="entry-10" onclick="entryToggle(10)">↗10</p>
+                    <p class="entry-button wide-entry" id="entry-11" onclick="entryToggle(11)">↗11</p>
+                    <p class="entry-button wide-entry" id="entry-12" onclick="entryToggle(12)">↗12</p>
+                    <p class="rec-button" id="entry-all" onclick="entryAll()">All</p>
+                    <p class="entry-button" id="entry-m1" onclick="entryToggle(-1)">↘1</p>
+                    <p class="entry-button" id="entry-m2" onclick="entryToggle(-2)">↘2</p>
+                    <p class="entry-button" id="entry-m3" onclick="entryToggle(-3)">↘3</p>
+                    <p class="entry-button" id="entry-m4" onclick="entryToggle(-4)">↘4</p>
+                    <p class="entry-button" id="entry-m5" onclick="entryToggle(-5)">↘5</p>
+                    <p class="entry-button" id="entry-m6" onclick="entryToggle(-6)">↘6</p>
+                    <p class="entry-button" id="entry-m7" onclick="entryToggle(-7)">↘7</p>
+                    <p class="entry-button" id="entry-m8" onclick="entryToggle(-8)">↘8</p>
+                    <p class="entry-button" id="entry-m9" onclick="entryToggle(-9)">↘9</p>
+                    <p class="entry-button wide-entry" id="entry-m10" onclick="entryToggle(-10)">↘10</p>
+                    <p class="entry-button wide-entry" id="entry-m11" onclick="entryToggle(-11)">↘11</p>
+                    <p class="entry-button wide-entry" id="entry-m12" onclick="entryToggle(-12)">↘12</p>
+                </div>
             </div>
         </div>
         <div id="content">

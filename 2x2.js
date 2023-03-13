@@ -403,6 +403,12 @@ function countPrint() {
     document.getElementById('counter').innerHTML = count + " ";
 }
 
+let jvFilterBox = document.getElementById("jv-filter");
+let entryFilterBox = document.getElementById("entry-filter");
+
+showJv();
+
+// populate the pattern column
 for (let i = 0; i < 256; i++) {
     const para = document.createElement("p");
     para.className = 'pattern';
@@ -465,6 +471,42 @@ for (let i = 0; i < 256; i++) {
 
     const element = document.getElementById("pattern-list");
     element.appendChild(para);
+}
+
+function hideAll() {
+    jvFilterBox.style.display = "none";
+    entryFilterBox.style.display = "none";
+}
+
+function resetFilterButtons() {
+    document.getElementById("jv-toggle").style.backgroundColor = "#ccc";
+    document.getElementById("jv-toggle").style.color = "black";
+    document.getElementById("entry-toggle").style.backgroundColor = "#ccc";
+    document.getElementById("entry-toggle").style.color = "black";
+    document.getElementById("model-toggle").style.backgroundColor = "#ccc";
+    document.getElementById("model-toggle").style.color = "black";
+    document.getElementById("vp-toggle").style.backgroundColor = "#ccc";
+    document.getElementById("vp-toggle").style.color = "black";
+    document.getElementById("root-toggle").style.backgroundColor = "#ccc";
+    document.getElementById("root-toggle").style.color = "black";
+}
+
+// open the Jv filter menu, close the rest
+function showJv() {
+    hideAll();
+    jvFilterBox.style.display = "block";
+    resetFilterButtons();
+    document.getElementById("jv-toggle").style.backgroundColor = "#BB2F3D";
+    document.getElementById("jv-toggle").style.color = "white";
+}
+
+// open the Jv filter menu, close the rest
+function showEntry() {
+    hideAll();
+    entryFilterBox.style.display = "block";
+    resetFilterButtons();
+    document.getElementById("entry-toggle").style.backgroundColor = "#BB2F3D";
+    document.getElementById("entry-toggle").style.color = "white";
 }
 
 // set up array to track JJv filtering
