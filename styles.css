@@ -35,7 +35,6 @@ main {
     height: auto;
     width: 100%;
     padding: 10px 0;
-    background-color:#fafafa;
 }
 
 .filter-label {
@@ -95,7 +94,6 @@ main {
 }
 
 #info {
-    background-color:#fafafa;
     display: inline-block;
     width: calc(100% - 150px);
     height: 400px;

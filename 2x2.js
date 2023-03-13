@@ -210,123 +210,6 @@ function invertu(n) {
     return n;
 }
 
-for (let i = 0; i < 256; i++) {
-    const para = document.createElement("p");
-    para.className = 'pattern';
-    para.id = "pattern" + i;
-    para.onclick = function () {
-        // Show pattern name
-        const patName = document.getElementById('pattern-name');
-        patName.innerHTML = hexcode(pat[i].val);
-        // Show pattern Jv
-        const jv = document.getElementById('jv');
-        switch (pat[i].jv) {
-            case 0: case -3: case -4: case -7: case -10: case -11:
-                jv.innerHTML = "<sup>1</sup><em>Jv</em> = " + pat[i].jv;
-                break;
-            default:
-                jv.innerHTML = "<sup>2</sup><em>Jv</em> = " + pat[i].jv;
-                break;
-        }
-        // Show pattern entry intervals
-        const entries = document.getElementById('entry');
-        const firstEntry = pat[i].entry[0] > 0 ? "↗" + pat[i].entry[0] :
-        pat[i].entry[0] < 0 ? "↘" + Math.abs(pat[i].entry[0]) : "→0";
-        const secondEntry = pat[i].entry[1] > 0 ? "↗" + pat[i].entry[1] :
-        pat[i].entry[1] < 0 ? "↘" + Math.abs(pat[i].entry[1]) : "→0";
-        entries.innerHTML = firstEntry + ", " + secondEntry;
-        // Show pattern alias
-        const alias = document.getElementById('alias');
-        alias.innerHTML = same_check(pat[i].val, getAlias(pat[i].val)) ? "N/A" :
-        hexcode(getAlias(pat[i].val));
-        // Show pattern retrograde
-        const retro = document.getElementById('retro');
-        same_check(pat[i].val, getRetro(pat[i].val)) ? retro.innerHTML = "N/A" :
-        retro.innerHTML = hexcode(getRetro(pat[i].val));
-        // Show pattern note swap
-        const nswap = document.getElementById('nswap');
-        nswap.innerHTML = pat[i].nswap ? hexcode(pat[i].nswap) : "N/A";
-        // Show pattern octave swap
-        const oswap = document.getElementById('oswap');
-        oswap.innerHTML = pat[i].oswap ? hexcode(pat[i].oswap) : "N/A";
-        // Show root sequences
-        const seqs = document.getElementById('seqs');
-        seqs.innerHTML = pat[i].seqs;
-    };
-
-    let node = document.createTextNode(hexcode(pat[i].val));
-    para.appendChild(node);
-
-    const element = document.getElementById("pattern-list");
-    element.appendChild(para);
-}
-
-// set up array to track JJv filtering
-let jvFlag = new Array(14);
-for (let i = 0; i <= 13; i++) {
-    jvFlag[i] = true;
-}
-
-// toggle the state of given Jv filters
-function jvToggle(x) {
-    jvFlag[x] = !jvFlag[x];
-    applyJv();
-    jvButtonUpdate();
-}
-
-// hides/shows patterns based on Jv flags
-function applyJv() {
-    for (let i = 0; i < 256; i++) {
-        let thisPat = document.getElementById("pattern" + i);
-        if(filterJv(i)) {
-            thisPat.style.display = "block";
-        } else {
-            thisPat.style.display = "none";
-        }
-    }
-}
-
-// update the state of Jv button colours when toggling is changed
-function jvButtonUpdate() {
-    for (let i = 0; i <= 13; i++) {
-        buttonCol = document.getElementById("jv-" + i)
-        if (jvFlag[i]) {
-            buttonCol.style.backgroundColor = "#BB2F3D";
-            buttonCol.style.color = "white";
-        } else {
-            buttonCol.style.backgroundColor = "#ccc";
-            buttonCol.style.color = "black";
-        }
-    }
-}
-
-// returns true if a given pattern matches the currently toggled JJv, else false
-function filterJv(x) {
-    for (let i = 0; i <= 13; i++) {
-        if(pat[x].jv === 0 - i && jvFlag[i])
-            return true;
-    }
-    return false;
-}
-
-// set all Jv toggles to off
-function jvNone() {
-    for (let i = 0; i <= 13; i++) {
-        jvFlag[i] = false;
-    }
-    applyJv();
-    jvButtonUpdate();
-}
-
-// set all Jv toggles to on
-function jvAll() {
-    for (let i = 0; i <= 13; i++) {
-        jvFlag[i] = true;
-    }
-    applyJv();
-    jvButtonUpdate();
-}
-
 // find all possible root sequences a given pattern can support
 function getseqs(pat) {
 	// >>> MECHANISM TO COMPUTE SUPPORTED ROOT MOTIONS <<<
@@ -484,36 +367,163 @@ function sortseqs(a) {
 // convert s[].seqs[] short array to char string
 function stringseqs(a) {
 	let str = "";
-    let count = a.length;
 
-	for (let i = 0; i <= count - 2; i += 2) {
-		// FIRST INT CASES
-		// first int is greater than zero
-		if (a[i] > 0) {
-			str = "U";
-			str += a[i];
-		// first int is negative
-		} else if (a[i] < 0) {
-			str = "D";
-			str += Math.abs(a[i]);
-		// first int is zero
-		} else {
-			str = "S";
-		}
-		// SECOND INT CASES
-		// second int is greater than zero
-		if (a[i+1] > 0)
-		{
-			str += "U";
-			str += a[i+1];
-		// second int is less than zero
-		} else if (a[i+1] < 0) {
-			str += "D";
-			str += Math.abs(a[i+1]);
-		// second int is zero
-		} else {
-			str += "S";
-		}
-	}
+    // FIRST INT CASES
+    // first int is greater than zero
+    if (a[0] > 0) {
+        str = "U";
+        str += a[0];
+    // first int is negative
+    } else if (a[0] < 0) {
+        str = "D";
+        str += Math.abs(a[0]);
+    // first int is zero
+    } else {
+        str = "S";
+    }
+    // SECOND INT CASES
+    // second int is greater than zero
+    if (a[1] > 0)
+    {
+        str += "U";
+        str += a[1];
+    // second int is less than zero
+    } else if (a[1] < 0) {
+        str += "D";
+        str += Math.abs(a[1]);
+    // second int is zero
+    } else {
+        str += "S";
+    }
 	return str;
+}
+
+for (let i = 0; i < 256; i++) {
+    const para = document.createElement("p");
+    para.className = 'pattern';
+    para.id = "pattern" + i;
+    para.onclick = function () {
+        // Show pattern name
+        const patName = document.getElementById('pattern-name');
+        patName.innerHTML = hexcode(pat[i].val);
+        // Show pattern Jv
+        const jv = document.getElementById('jv');
+        switch (pat[i].jv) {
+            case 0: case -3: case -4: case -7: case -10: case -11:
+                jv.innerHTML = "<sup>1</sup><em>Jv</em> = " + pat[i].jv;
+                break;
+            default:
+                jv.innerHTML = "<sup>2</sup><em>Jv</em> = " + pat[i].jv;
+                break;
+        }
+        // Show pattern entry intervals
+        const entries = document.getElementById('entry');
+        const firstEntry = pat[i].entry[0] > 0 ? "↗" + pat[i].entry[0] :
+        pat[i].entry[0] < 0 ? "↘" + Math.abs(pat[i].entry[0]) : "→0";
+        const secondEntry = pat[i].entry[1] > 0 ? "↗" + pat[i].entry[1] :
+        pat[i].entry[1] < 0 ? "↘" + Math.abs(pat[i].entry[1]) : "→0";
+        entries.innerHTML = firstEntry + ", " + secondEntry;
+        // Show pattern alias
+        const alias = document.getElementById('alias');
+        alias.innerHTML = same_check(pat[i].val, getAlias(pat[i].val)) ? "N/A" :
+        hexcode(getAlias(pat[i].val));
+        // Show pattern retrograde
+        const retro = document.getElementById('retro');
+        same_check(pat[i].val, getRetro(pat[i].val)) ? retro.innerHTML = "N/A" :
+        retro.innerHTML = hexcode(getRetro(pat[i].val));
+        // Show pattern note swap
+        const nswap = document.getElementById('nswap');
+        nswap.innerHTML = pat[i].nswap ? hexcode(pat[i].nswap) : "N/A";
+        // Show pattern octave swap
+        const oswap = document.getElementById('oswap');
+        oswap.innerHTML = pat[i].oswap ? hexcode(pat[i].oswap) : "N/A";
+        // Show root sequences
+        const seqs = document.getElementById('seqs');
+        switch (pat[i].seqs.length) {
+            case 1:
+                seqs.innerHTML = stringseqs(pat[i].seqs[0]);
+                break;
+            case 2:
+                seqs.innerHTML = stringseqs(pat[i].seqs[0])
+                + " or " + stringseqs(pat[i].seqs[1]);
+                break;
+            case 3:
+                seqs.innerHTML = stringseqs(pat[i].seqs[0])
+                + ", " + stringseqs(pat[i].seqs[1])
+                + ", or " + stringseqs(pat[i].seqs[2]);
+                break;
+        };
+    };
+
+    let node = document.createTextNode(hexcode(pat[i].val));
+    para.appendChild(node);
+
+    const element = document.getElementById("pattern-list");
+    element.appendChild(para);
+}
+
+// set up array to track JJv filtering
+let jvFlag = new Array(14);
+for (let i = 0; i <= 13; i++) {
+    jvFlag[i] = true;
+}
+
+// toggle the state of given Jv filters
+function jvToggle(x) {
+    jvFlag[x] = !jvFlag[x];
+    applyJv();
+    jvButtonUpdate();
+}
+
+// hides/shows patterns based on Jv flags
+function applyJv() {
+    for (let i = 0; i < 256; i++) {
+        let thisPat = document.getElementById("pattern" + i);
+        if(filterJv(i)) {
+            thisPat.style.display = "block";
+        } else {
+            thisPat.style.display = "none";
+        }
+    }
+}
+
+// update the state of Jv button colours when toggling is changed
+function jvButtonUpdate() {
+    for (let i = 0; i <= 13; i++) {
+        buttonCol = document.getElementById("jv-" + i)
+        if (jvFlag[i]) {
+            buttonCol.style.backgroundColor = "#BB2F3D";
+            buttonCol.style.color = "white";
+        } else {
+            buttonCol.style.backgroundColor = "#ccc";
+            buttonCol.style.color = "black";
+        }
+    }
+}
+
+// returns true if a given pattern matches the currently toggled JJv, else false
+function filterJv(x) {
+    for (let i = 0; i <= 13; i++) {
+        if(pat[x].jv === 0 - i && jvFlag[i])
+            return true;
+    }
+    return false;
+}
+
+// set all Jv toggles to off
+function jvNone() {
+    for (let i = 0; i <= 13; i++) {
+        jvFlag[i] = false;
+    }
+    applyJv();
+    jvButtonUpdate();
+}
+
+// set all Jv toggles to on
+function jvAll() {
+    for (let i = 0; i <= 13; i++) {
+        jvFlag[i] = true;
+    }
+    applyJv();
+    jvButtonUpdate();
 }
