@@ -72,113 +72,6 @@ function consonances(i, j) {
     }
 }
 
-for (let i = 0; i < 256; i++) {
-    const para = document.createElement("p");
-    para.className = 'pattern';
-    para.id = "pattern" + i;
-    para.onclick = function () {
-        // Show pattern name
-        const patName = document.getElementById('pattern-name');
-        patName.innerHTML = hexcode(pat[i].val);
-        // Show pattern Jv
-        const jv = document.getElementById('jv');
-        switch (pat[i].jv) {
-            case 0: case -3: case -4: case -7: case -10: case -11:
-                jv.innerHTML = "<sup>1</sup><em>Jv</em> = " + pat[i].jv;
-                break;
-            default:
-                jv.innerHTML = "<sup>2</sup><em>Jv</em> = " + pat[i].jv;
-                break;
-        }
-        // Show pattern entry intervals
-        const entries = document.getElementById('entry');
-        const firstEntry = pat[i].entry[0] > 0 ? "↗" + pat[i].entry[0] :
-        pat[i].entry[0] < 0 ? "↘" + Math.abs(pat[i].entry[0]) : "→0";
-        const secondEntry = pat[i].entry[1] > 0 ? "↗" + pat[i].entry[1] :
-        pat[i].entry[1] < 0 ? "↘" + Math.abs(pat[i].entry[1]) : "→0";
-        entries.innerHTML = firstEntry + ", " + secondEntry;
-        // Show pattern alias
-        const alias = document.getElementById('alias');
-        alias.innerHTML = same_check(pat[i].val, getAlias(pat[i].val)) ? "N/A" :
-        hexcode(getAlias(pat[i].val));
-        // Show pattern retrograde
-        const retro = document.getElementById('retro');
-        same_check(pat[i].val, getRetro(pat[i].val)) ? retro.innerHTML = "N/A" :
-        retro.innerHTML = hexcode(getRetro(pat[i].val));
-    };
-
-    let node = document.createTextNode(hexcode(pat[i].val));
-    para.appendChild(node);
-
-    const element = document.getElementById("pattern-list");
-    element.appendChild(para);
-}
-
-// set up array to track JJv filtering
-let jvFlag = new Array(14);
-for (let i = 0; i <= 13; i++) {
-    jvFlag[i] = true;
-}
-
-// toggle the state of given Jv filters
-function jvToggle(x) {
-    jvFlag[x] = !jvFlag[x];
-    applyJv();
-    jvButtonUpdate();
-}
-
-// hides/shows patterns based on JJv flags
-function applyJv() {
-    for (let i = 0; i < 256; i++) {
-        let thisPat = document.getElementById("pattern" + i);
-        if(filterJv(i)) {
-            thisPat.style.display = "block";
-        } else {
-            thisPat.style.display = "none";
-        }
-    }
-}
-
-function jvButtonUpdate() {
-    for (let i = 0; i <= 13; i++) {
-        buttonCol = document.getElementById("jv-" + i)
-        if (jvFlag[i]) {
-            buttonCol.style.backgroundColor = "#BB2F3D";
-            buttonCol.style.color = "white";
-        } else {
-            buttonCol.style.backgroundColor = "#ccc";
-            buttonCol.style.color = "black";
-        }
-    }
-}
-
-// returns true if a given pattern matches the currently toggled JJv, else false
-function filterJv(x) {
-    for (let i = 0; i <= 13; i++) {
-        if(pat[x].jv === 0 - i && jvFlag[i])
-            return true;
-    }
-    return false;
-}
-
-// set all Jv toggles to off
-function jvNone() {
-    for (let i = 0; i <= 13; i++) {
-        jvFlag[i] = false;
-    }
-    applyJv();
-    jvButtonUpdate();
-}
-
-// set all Jv toggles to on
-function jvAll() {
-    for (let i = 0; i <= 13; i++) {
-        jvFlag[i] = true;
-    }
-    applyJv();
-    jvButtonUpdate();
-}
-
 // turns pattern array into formatted hexcode string
 function hexcode(val) {
     if (val === false)
@@ -321,4 +214,117 @@ function invertu(n) {
     else if (n < 0)
         n += 7;
     return n;
+}
+
+for (let i = 0; i < 256; i++) {
+    const para = document.createElement("p");
+    para.className = 'pattern';
+    para.id = "pattern" + i;
+    para.onclick = function () {
+        // Show pattern name
+        const patName = document.getElementById('pattern-name');
+        patName.innerHTML = hexcode(pat[i].val);
+        // Show pattern Jv
+        const jv = document.getElementById('jv');
+        switch (pat[i].jv) {
+            case 0: case -3: case -4: case -7: case -10: case -11:
+                jv.innerHTML = "<sup>1</sup><em>Jv</em> = " + pat[i].jv;
+                break;
+            default:
+                jv.innerHTML = "<sup>2</sup><em>Jv</em> = " + pat[i].jv;
+                break;
+        }
+        // Show pattern entry intervals
+        const entries = document.getElementById('entry');
+        const firstEntry = pat[i].entry[0] > 0 ? "↗" + pat[i].entry[0] :
+        pat[i].entry[0] < 0 ? "↘" + Math.abs(pat[i].entry[0]) : "→0";
+        const secondEntry = pat[i].entry[1] > 0 ? "↗" + pat[i].entry[1] :
+        pat[i].entry[1] < 0 ? "↘" + Math.abs(pat[i].entry[1]) : "→0";
+        entries.innerHTML = firstEntry + ", " + secondEntry;
+        // Show pattern alias
+        const alias = document.getElementById('alias');
+        alias.innerHTML = same_check(pat[i].val, getAlias(pat[i].val)) ? "N/A" :
+        hexcode(getAlias(pat[i].val));
+        // Show pattern retrograde
+        const retro = document.getElementById('retro');
+        same_check(pat[i].val, getRetro(pat[i].val)) ? retro.innerHTML = "N/A" :
+        retro.innerHTML = hexcode(getRetro(pat[i].val));
+        // Show pattern note swap
+        const nswap = document.getElementById('nswap');
+        nswap.innerHTML = pat[i].nswap ? hexcode(pat[i].nswap) : "N/A";
+        // Show pattern octave swap
+        const oswap = document.getElementById('oswap');
+        oswap.innerHTML = pat[i].oswap ? hexcode(pat[i].oswap) : "N/A";
+    };
+
+    let node = document.createTextNode(hexcode(pat[i].val));
+    para.appendChild(node);
+
+    const element = document.getElementById("pattern-list");
+    element.appendChild(para);
+}
+
+// set up array to track JJv filtering
+let jvFlag = new Array(14);
+for (let i = 0; i <= 13; i++) {
+    jvFlag[i] = true;
+}
+
+// toggle the state of given Jv filters
+function jvToggle(x) {
+    jvFlag[x] = !jvFlag[x];
+    applyJv();
+    jvButtonUpdate();
+}
+
+// hides/shows patterns based on JJv flags
+function applyJv() {
+    for (let i = 0; i < 256; i++) {
+        let thisPat = document.getElementById("pattern" + i);
+        if(filterJv(i)) {
+            thisPat.style.display = "block";
+        } else {
+            thisPat.style.display = "none";
+        }
+    }
+}
+
+function jvButtonUpdate() {
+    for (let i = 0; i <= 13; i++) {
+        buttonCol = document.getElementById("jv-" + i)
+        if (jvFlag[i]) {
+            buttonCol.style.backgroundColor = "#BB2F3D";
+            buttonCol.style.color = "white";
+        } else {
+            buttonCol.style.backgroundColor = "#ccc";
+            buttonCol.style.color = "black";
+        }
+    }
+}
+
+// returns true if a given pattern matches the currently toggled JJv, else false
+function filterJv(x) {
+    for (let i = 0; i <= 13; i++) {
+        if(pat[x].jv === 0 - i && jvFlag[i])
+            return true;
+    }
+    return false;
+}
+
+// set all Jv toggles to off
+function jvNone() {
+    for (let i = 0; i <= 13; i++) {
+        jvFlag[i] = false;
+    }
+    applyJv();
+    jvButtonUpdate();
+}
+
+// set all Jv toggles to on
+function jvAll() {
+    for (let i = 0; i <= 13; i++) {
+        jvFlag[i] = true;
+    }
+    applyJv();
+    jvButtonUpdate();
 }

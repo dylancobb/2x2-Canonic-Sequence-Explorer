@@ -15,7 +15,7 @@ body {
     height: auto;
     width: 100%;
     padding: 10px 0;
-    background-color:#F1C6CA;
+    background-color:#fafafa;
 }
 
 .filter-label {
@@ -49,13 +49,13 @@ body {
 }
 
 .square-button:hover, .rec-button:hover {
-    background-color:#E28D95 !important;
-    color: white !important;
+    background-color:#F1C6CA !important;
+    color: black !important;
 }
 
 .square-button:active, .rec-button:active {
-    background-color:#ddd !important;
-    color: black !important;
+    background-color:#D55864 !important;
+    color: white !important;
 }
 
 #jv-buttons {
@@ -75,7 +75,7 @@ body {
 }
 
 #info {
-    background-color:#eee;
+    background-color:#fafafa;
     display: inline-block;
     width: calc(100% - 150px);
     height: 400px;
@@ -90,7 +90,7 @@ body {
     margin: 0px;
 }
 
-.param1, .param2, .param3, .param4 {
+.param1, .param2, .param3, .param4, .param5, .param6 {
     position: absolute;
 }
 
@@ -108,6 +108,14 @@ body {
 
 .param4 {
     top: 162px;
+}
+
+.param5 {
+    top: 192px;
+}
+
+.param6 {
+    top: 222px;
 }
 
 .vspace {
