@@ -85,10 +85,25 @@ main {
     row-gap: 2px;
 }
 
+#left-col {
+    display: flex;
+    flex-direction: column;
+    float: left;
+}
+
+#pat-num {
+    background-color: #BB2F3D;
+    color: white;
+    text-align: center;
+    width: 150px;
+    margin: 0;
+    padding: 0.6em 1.2em;
+    border-radius: 4px 4px 0 0;
+}
+
 #pattern-list {
     background-color:#ddd;
     overflow-y: auto;
-    float: left;
     width: 150px;
     height: 400px;
 }

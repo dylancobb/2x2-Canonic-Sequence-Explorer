@@ -64,6 +64,7 @@ function consonances(i, j) {
         
         count++;
     }
+    countPrint();
 }
 
 // turns pattern array into formatted hexcode string
@@ -398,6 +399,10 @@ function stringseqs(a) {
 	return str;
 }
 
+function countPrint() {
+    document.getElementById('counter').innerHTML = count + " ";
+}
+
 for (let i = 0; i < 256; i++) {
     const para = document.createElement("p");
     para.className = 'pattern';
@@ -477,14 +482,17 @@ function jvToggle(x) {
 
 // hides/shows patterns based on Jv flags
 function applyJv() {
+    count = 0;
     for (let i = 0; i < 256; i++) {
         let thisPat = document.getElementById("pattern" + i);
         if(filterJv(i)) {
             thisPat.style.display = "block";
+            count++;
         } else {
             thisPat.style.display = "none";
         }
     }
+    countPrint();
 }
 
 // update the state of Jv button colours when toggling is changed
