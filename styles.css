@@ -17,6 +17,11 @@ main {
 
 #logo {
     vertical-align: middle;
+    transition: 0.3s;
+}
+
+#logo:hover {
+    filter: sepia(0.3) brightness(1.2);
 }
 
 #page-title {
@@ -105,7 +110,7 @@ main {
     margin: 0px;
 }
 
-.param1, .param2, .param3, .param4, .param5, .param6 {
+.param1, .param2, .param3, .param4, .param5, .param6, .param7 {
     position: absolute;
 }
 
@@ -131,6 +136,10 @@ main {
 
 .param6 {
     top: 222px;
+}
+
+.param7 {
+    top: 252px;
 }
 
 .vspace {

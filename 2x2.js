@@ -58,17 +58,11 @@ function consonances(i, j) {
                 : model_check(entry_a, entry_b) ? [entry_a, entry_b, k, -n]
                     : false,
             // 8ve swap (will equal "false" if not viable)
-            oswap: oswap_gen([i, j, k, n])
+            oswap: oswap_gen([i, j, k, n]),
+            seqs: getseqs([i, j, k, n])
         });
 
-        // const para = document.createElement("p");
-        // para.className = 'pattern'
-        // let node = document.createTextNode(hexcode(pat[count].val));
-        // ++count;
-        // para.appendChild(node);
-
-        // const element = document.getElementById("pattern-list");
-        // element.appendChild(para);
+        count++;
     }
 }
 
@@ -255,6 +249,9 @@ for (let i = 0; i < 256; i++) {
         // Show pattern octave swap
         const oswap = document.getElementById('oswap');
         oswap.innerHTML = pat[i].oswap ? hexcode(pat[i].oswap) : "N/A";
+        // Show root sequences
+        const seqs = document.getElementById('seqs');
+        seqs.innerHTML = pat[i].seqs;
     };
 
     let node = document.createTextNode(hexcode(pat[i].val));
@@ -277,7 +274,7 @@ function jvToggle(x) {
     jvButtonUpdate();
 }
 
-// hides/shows patterns based on JJv flags
+// hides/shows patterns based on Jv flags
 function applyJv() {
     for (let i = 0; i < 256; i++) {
         let thisPat = document.getElementById("pattern" + i);
@@ -289,6 +286,7 @@ function applyJv() {
     }
 }
 
+// update the state of Jv button colours when toggling is changed
 function jvButtonUpdate() {
     for (let i = 0; i <= 13; i++) {
         buttonCol = document.getElementById("jv-" + i)
@@ -327,4 +325,154 @@ function jvAll() {
     }
     applyJv();
     jvButtonUpdate();
+}
+
+// find all possible root sequences a given pattern can support
+function getseqs(pat) {
+	// >>> MECHANISM TO COMPUTE SUPPORTED ROOT MOTIONS <<<
+	// storage for possible root positions WRT lower note of each consonance
+	const possroot = [
+    	[ 0, -2, -4 ],
+        [ ],
+    	[ 0, -2 ],
+    	[ -4 ],
+    	[ 0 ],
+    	[ -2, -4 ]
+    ];
+	// storage for the number of elements in possroot[n][]
+	const size = [ 3, 0, 2, 1, 1, 2 ];
+
+	// first and second half of root pattern
+	let a, b;
+	// first and second consonance from input pattern
+	let x = pat[2];
+	let y = pat[3];
+    // for storing seqs temporarily
+    let seqs = new Array(6);
+	// for storing and comparing patterns to avoid duplication
+    let scount = 0;
+
+	// reduce consonances to simple positive ints
+	while (x < 0)
+		x += 7;
+	x %= 7;
+	while (y < 0)
+		y += 7;
+	y %= 7;
+
+	// work out all possible root sequences
+	for (let i = 0; i < size[x]; i++) {
+		for (let j = 0; j < size[y]; j++) {
+			// set values for first and second half of root sequence
+			a = pat[0] + possroot[y][i] - possroot[x][j];
+			b = pat[0] + pat[1] - a;
+			// process intervals
+			[a, b] = cleanseq(a, b);
+            // check if sequence is already listed
+            let dupe = false;
+            for (let k = scount; k > 0; k -= 2) {
+                if ((k >= 2 && a === seqs[k-2] && b === seqs[k-1])) {
+                    dupe = true;
+                }
+            }
+            // sequence is unique: save intervals
+            if (!dupe) {
+                seqs[scount] = a;
+                seqs[scount + 1] = b;
+                // increase count ready for next sequence (or recall if complete)
+                scount += 2;
+            }
+		}
+	}
+	// sort sequences if not correctly ordered
+	sortseqs(seqs, 6, scount);
+
+    return seqs;
+}
+
+// clean up the intervals in generated root sequence models
+function cleanseq(a, b) {
+	// make sure a and b are simple ints
+	a %= 7;
+	b %= 7;
+	// algo to arrange output in normal order
+	if (Math.abs(a) + Math.abs(b) >= 7) {
+		// invert larger int at the 8ve
+		if (Math.abs(a) > Math.abs(b)) {
+			a = invert(a);
+		} else {
+			b = invert(b);
+		}
+	}
+	// if both ints have same sign and combined magnitude > 4, flip the smaller
+	if ((a) * (b) > 0 &&
+		Math.abs(a) + Math.abs(b) > 4) {
+		// invert first int at the 8ve
+		if (Math.abs(a) > Math.abs(b))
+			a = invert(a);
+		// invert second int at the 8ve
+		else
+			b = invert(b);
+	}
+	// if either int is zero, the other should not exceed 3
+	if ((a === 0 || b === 0) &&
+		(Math.abs(a) > 3 || Math.abs(b) > 3)) {
+		// invert first int at the 8ve
+		if (a !== 0)
+			a = invert(a);
+		// invert second int at the 8ve
+		else
+			b = invert(b);
+	}
+	// if either int is larger than 2 and signs the same, flip larger
+	if ((Math.abs(a) > 2 || Math.abs(b) > 2) &&
+		((a) * (b) > 0)) {
+		if (Math.abs(a) > Math.abs(b))
+			a = invert(a);
+		else
+			b = invert(b);
+	}
+	// no int should be larger than 4 in magnitude
+	if (Math.abs(a) > 4)
+		a = invert(a);
+	if (Math.abs(b) > 4)
+		b = invert(b);
+	// make sure it's in normal order (again)
+	if (a < b) {
+		let swap = a;
+		a = b;
+		b = swap;
+	}
+    return [a, b];
+}
+
+// inverts an interval at the octave, unisons become -7
+function invert(n) {
+	n %= 7;
+	if (n >= 0)
+		n -= 7;
+	else
+		n += 7;
+    return n;
+}
+
+// bubble sorts sequences stored in array string
+function sortseqs(a, len, count) {
+	let swap;
+	
+	// check if int 1 of each seq is larger than the seq before, swaps if true
+	for (let i = count - 2; i >= 2; i -= 2) {
+		if (a[i] > a[i-2]) {
+			swap = a[i];
+			a[i] = a[i-2];
+			a[i-2] = swap;
+			swap = a[i+1];
+			a[i+1] = a[i-1];
+			a[i-1] = swap;
+		}
+	}
+	// checks if the patterns are sorted, repeats process if not
+	for (let i = count - 2; i >= 2; i -= 2)
+		if (a[i] > a[i-2])
+			sortseqs(a, 4, count);	
 }
