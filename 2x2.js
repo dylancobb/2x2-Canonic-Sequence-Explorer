@@ -482,6 +482,8 @@ function patternData(i) {
             + ", or " + stringseqs(pat[i].seqs[2]);
             break;
     };
+    const patternImage = document.getElementById('media-box');
+    patternImage.innerHTML = `<img id="score-image" src="SVGs/${i}.svg" alt="image of pattern notation" />`;
 }
 
 function hideAll() {

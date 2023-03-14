@@ -163,8 +163,30 @@ body {
     position: relative;
 }
 
+#pattern-data {
+    display: inline-flex;
+    flex-direction: row;
+    vertical-align: top;
+}
+
+#media-box {
+    display: inline-flex;
+    position: relative;
+    top: 50px;
+    left: 50px;
+    height: 400px;
+}
+
+#score-image {
+    position: absolute;
+    top: 75px;
+    transform: translate(0%,-50%);
+    width: 300px;
+}
+
 #pattern-name {
     margin: 20px;
+    width: 200px;
 }
 
 .param {
