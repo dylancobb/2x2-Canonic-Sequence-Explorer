@@ -399,6 +399,7 @@ function stringseqs(a) {
 	return str;
 }
 
+// prints the current number of unfiltered patterns
 function countPrint() {
     document.getElementById('counter').innerHTML = count + " ";
 }
@@ -406,14 +407,21 @@ function countPrint() {
 let jvFilterBox = document.getElementById("jv-filter");
 let entryFilterBox = document.getElementById("entry-filter");
 let modelFilterBox = document.getElementById("model-filter");
+let vpFilterBox = document.getElementById("vp-filter");
 
 // set up arrays to track filters
 let jvFlag = new Array(14);
 let entryFlag = new Array(25);
 let modelFlag = new Array(15);
+let modelIncFlag = true;
+let modelIncButton = document.getElementById("model-inc");
+let modelExButton = document.getElementById("model-ex");
+let vpFlag = 0; // 0 = agnostic, 1 = all, 2 = not OVP, 3 = UVP only
 
-showModel();
+showVP();
 resetFlags();
+modelIncButtonUpdate();
+vpButtonUpdate();
 
 // populate the pattern column
 for (let i = 0; i < 256; i++) {
@@ -431,6 +439,7 @@ for (let i = 0; i < 256; i++) {
     element.appendChild(para);
 }
 
+// populates pattern data block with specified pattern's data
 function patternData(i) {
     // Show pattern name
     const patName = document.getElementById('pattern-name');
@@ -486,12 +495,15 @@ function patternData(i) {
     patternImage.innerHTML = `<img id="score-image" src="SVGs/${i}.svg" alt="image of pattern notation" />`;
 }
 
+// hides all filter menus
 function hideAll() {
     jvFilterBox.style.display = "none";
     entryFilterBox.style.display = "none";
     modelFilterBox.style.display = "none";
+    vpFilterBox.style.display = "none";
 }
 
+// sets all filter buttons to their unselected colour
 function resetFilterButtons() {
     document.getElementById("jv-toggle").style.backgroundColor = "#ccc";
     document.getElementById("jv-toggle").style.color = "black";
@@ -532,6 +544,16 @@ function showModel() {
     document.getElementById("model-toggle").style.color = "white";
 }
 
+// open the VP filter menu, close the rest
+function showVP() {
+    hideAll();
+    vpFilterBox.style.display = "block";
+    resetFilterButtons();
+    document.getElementById("vp-toggle").style.backgroundColor = "#BB2F3D";
+    document.getElementById("vp-toggle").style.color = "white";
+}
+
+// reset all filter flags
 function resetFlags() {
     for (let i = 0; i <= 13; i++) {
         jvFlag[i] = true;
@@ -542,6 +564,7 @@ function resetFlags() {
     for (let i = 0; i < 15; i++) {
         modelFlag[i] = true;
     }
+    vpFlag = 0;
 }
 
 // toggle the state of given Jv filters
@@ -565,12 +588,64 @@ function modelToggle(x) {
     modelButtonUpdate();
 }
 
+function modelInc() {
+    modelIncFlag = true;
+    applyFilters();
+    modelIncButtonUpdate();
+}
+
+function modelEx() {
+    modelIncFlag = false;
+    applyFilters();
+    modelIncButtonUpdate();
+}
+
+// toggle the state of given voice pair filters
+function vpAgnostic() {
+    vpFlag = 0;
+    applyFilters();
+    vpButtonUpdate();
+}
+
+function vpAll() {
+    vpFlag = 1;
+    applyFilters();
+    vpButtonUpdate();
+}
+
+function vpNotOuter() {
+    vpFlag = 2;
+    applyFilters();
+    vpButtonUpdate();
+}
+
+function vpUpper() {
+    vpFlag = 3;
+    applyFilters();
+    vpButtonUpdate();
+}
+
+// updates the model inc/ex button colours
+function modelIncButtonUpdate() {
+    if (modelIncFlag === true) {
+        modelIncButton.style.backgroundColor = "#BB2F3D";
+        modelIncButton.style.color = "white";
+        modelExButton.style.backgroundColor = "#ccc";
+        modelExButton.style.color = "black";
+    } else {
+        modelIncButton.style.backgroundColor = "#ccc";
+        modelIncButton.style.color = "black";
+        modelExButton.style.backgroundColor = "#BB2F3D";
+        modelExButton.style.color = "white";
+    }
+}
+
 // hides/shows patterns based on all flags
 function applyFilters() {
     count = 0;
     for (let i = 0; i < 256; i++) {
         let thisPat = document.getElementById("pattern" + i);
-        if(filterJv(i) && filterEntry(i) && modelEntry(i)) {
+        if(filterJv(i) && filterEntry(i) && modelEntry(i) && filterVP(i)) {
             thisPat.style.display = "block";
             count++;
         } else {
@@ -580,14 +655,15 @@ function applyFilters() {
     countPrint();
 }
 
+// reset filters
 function filterReset() {
     resetFlags();
     applyFilters();
     jvButtonUpdate();
     entryButtonUpdate();
     modelButtonUpdate();
+    vpButtonUpdate();
 }
-
 
 // update the state of Jv button colours when toggling is changed
 function jvButtonUpdate() {
@@ -644,6 +720,42 @@ function modelButtonUpdate() {
     }
 }
 
+// update the state of VP button colours when toggling is changed
+function vpButtonUpdate() {
+    const buttonColAgnostic = document.getElementById("vp-agnostic");
+    const buttonColAll = document.getElementById("vp-all");
+    const buttonColNotOuter = document.getElementById("vp-not-outer");
+    const buttonColUpper = document.getElementById("vp-upper");
+        if (vpFlag === 0) {
+            buttonColAgnostic.style.backgroundColor = "#BB2F3D";
+            buttonColAgnostic.style.color = "white";
+        } else {
+            buttonColAgnostic.style.backgroundColor = "#ccc";
+            buttonColAgnostic.style.color = "black";
+        }
+        if (vpFlag === 1) {
+            buttonColAll.style.backgroundColor = "#BB2F3D";
+            buttonColAll.style.color = "white";
+        } else {
+            buttonColAll.style.backgroundColor = "#ccc";
+            buttonColAll.style.color = "black";
+        }
+        if (vpFlag === 2) {
+            buttonColNotOuter.style.backgroundColor = "#BB2F3D";
+            buttonColNotOuter.style.color = "white";
+        } else {
+            buttonColNotOuter.style.backgroundColor = "#ccc";
+            buttonColNotOuter.style.color = "black";
+        }
+        if (vpFlag === 3) {
+            buttonColUpper.style.backgroundColor = "#BB2F3D";
+            buttonColUpper.style.color = "white";
+        } else {
+            buttonColUpper.style.backgroundColor = "#ccc";
+            buttonColUpper.style.color = "black";
+        }
+}
+
 // returns true if a given pattern matches the currently toggled JJv, else false
 function filterJv(x) {
     for (let i = 0; i <= 13; i++) {
@@ -664,8 +776,48 @@ function filterEntry(x) {
 
 // returns true if a given pattern matches the currently toggled model, else false
 function modelEntry(x) {
+    console.log(modelIncFlag);
+    let exCounter = 0;
     for (let i = -7; i <= 7; i++) {
-        if((pat[x].val[0] === i || pat[x].val[1] === i) && modelFlag[i + 7])
+        if(modelIncFlag === true) {
+            if((pat[x].val[0] === i || pat[x].val[1] === i) && modelFlag[i + 7])
+                return true;
+        } else {
+            if(pat[x].val[0] === i && modelFlag[i + 7])
+                exCounter++;
+            if(pat[x].val[1] === i && modelFlag[i + 7])
+                exCounter++;
+        }
+    }
+    if (exCounter > 1)
+        return true;
+    return false;
+}
+
+// returns true if a given pattern matches the currently toggled voice pair
+// applicability, else false
+function filterVP(x) {
+    // agnostic doesn't care
+    if (vpFlag === 0) {
+        return true;
+    // valid in the outer voice pair (no direct perfects, no fourths)
+    } else if (vpFlag === 1) {
+        if ((pat[x].val[0] * pat[x].val[1] > 0
+        && (Math.abs(pat[x].val[2] % 7) === 0 || Math.abs(pat[x].val[2] % 7) === 4
+        || Math.abs(pat[x].val[3] % 7) === 0 || Math.abs(pat[x].val[3] % 7) === 4))
+        || (Math.abs(pat[x].val[2] % 7) === 3 || Math.abs(pat[x].val[3] % 7) === 3))
+            return false;
+        return true;
+    // valid anywhere except the outer voice pair (has directs or fourths)
+    } else if (vpFlag === 2) {
+        if ((pat[x].val[0] * pat[x].val[1] > 0
+        && (Math.abs(pat[x].val[2] % 7) === 0 || Math.abs(pat[x].val[2] % 7) === 4
+        || Math.abs(pat[x].val[3] % 7) === 0 || Math.abs(pat[x].val[3] % 7) === 4))
+        || (Math.abs(pat[x].val[2] % 7) === 3 || Math.abs(pat[x].val[3] % 7) === 3))
+            return true;
+    // upper voice pair only (has fourths)
+    } else if (vpFlag === 3) {
+        if (Math.abs(pat[x].val[2] % 7) === 3 || Math.abs(pat[x].val[3] % 7) === 3)
             return true;
     }
     return false;

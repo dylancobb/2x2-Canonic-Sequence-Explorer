@@ -60,7 +60,7 @@
                 <span class="filter-label">Entry</span>
                 <div id="entry-buttons">
                     <p class="rec-button" id="entry-none" onclick="entryNone()">None</p>
-                    <p class="square-button tall" id="entry-0" onclick="entryToggle(0)">→0</p>
+                    <p class="square-button tall-entry" id="entry-0" onclick="entryToggle(0)">→0</p>
                     <p class="square-button" id="entry-1" onclick="entryToggle(1)">↗1</p>
                     <p class="square-button" id="entry-2" onclick="entryToggle(2)">↗2</p>
                     <p class="square-button" id="entry-3" onclick="entryToggle(3)">↗3</p>
@@ -92,7 +92,8 @@
                 <span class="filter-label">Model</span>
                 <div id="model-buttons">
                     <p class="rec-button" id="model-none" onclick="modelNone()">None</p>
-                    <p class="square-button tall" id="model-0" onclick="modelToggle(0)">S</p>
+                    <p class="rec-button" id="model-inc" onclick="modelInc()">Inc.</p>
+                    <p class="square-button tall-model" id="model-0" onclick="modelToggle(0)">S</p>
                     <p class="square-button" id="model-1" onclick="modelToggle(1)">U1</p>
                     <p class="square-button" id="model-2" onclick="modelToggle(2)">U2</p>
                     <p class="square-button" id="model-3" onclick="modelToggle(3)">U3</p>
@@ -100,12 +101,22 @@
                     <p class="square-button" id="model-5" onclick="modelToggle(5)">U5</p>
                     <p class="square-button" id="model-7" onclick="modelToggle(7)">U7</p>
                     <p class="rec-button" id="model-all" onclick="modelAll()">All</p>
+                    <p class="rec-button" id="model-ex" onclick="modelEx()">Excl.</p>
                     <p class="square-button" id="model-m1" onclick="modelToggle(-1)">D1</p>
                     <p class="square-button" id="model-m2" onclick="modelToggle(-2)">D2</p>
                     <p class="square-button" id="model-m3" onclick="modelToggle(-3)">D3</p>
                     <p class="square-button" id="model-m4" onclick="modelToggle(-4)">D4</p>
                     <p class="square-button" id="model-m5" onclick="modelToggle(-5)">D5</p>
                     <p class="square-button" id="model-m7" onclick="modelToggle(-7)">D7</p>
+                </div>
+            </div>
+            <div id="vp-filter">
+                <span class="filter-label vp-spacer">Voice Pairs:</span>
+                <div id="vp-buttons">
+                    <p class="vp-button" id="vp-agnostic" onclick="vpAgnostic()">Agnostic</p>
+                    <p class="vp-button" id="vp-all" onclick="vpAll()">All</p>
+                    <p class="vp-button" id="vp-not-outer" onclick="vpNotOuter()">Not OVP</p>
+                    <p class="vp-button" id="vp-upper" onclick="vpUpper()">UVP Only</p>
                 </div>
             </div>
         </div>

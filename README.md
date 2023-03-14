@@ -1,7 +1,6 @@
 # Introduction
 This is an embedded JavaScript version of my 2x2 canonic sequence generator, intended to provide GUI controls for searching and filtering patterns, and displaying information about them.
 # TODO
-- add score snippets for each pattern
 - add root sequence filtering
 - add voice pair applicability filtering
 - tidy up the page visually
