@@ -493,6 +493,17 @@ function patternData(i) {
     };
     const patternImage = document.getElementById('media-box');
     patternImage.innerHTML = `<img id="score-image" src="SVGs/${i}.svg" alt="image of pattern notation" />`;
+    // add warning boxes to patterns that need them
+    const warningBox = document.getElementById('warning-container');
+    if (Math.abs(pat[i].val[2] % 7) === 3 || Math.abs(pat[i].val[3] % 7) === 3) {
+        warningBox.innerHTML = '<p id="param-warning">This pattern is only suitable for deployment in upper voice pairs.</p>';
+    } else if (pat[i].val[0] * pat[i].val[1] > 0
+        && (Math.abs(pat[i].val[2] % 7) === 0 || Math.abs(pat[i].val[2] % 7) === 4
+        || Math.abs(pat[i].val[3] % 7) === 0 || Math.abs(pat[i].val[3] % 7) === 4)) {
+            warningBox.innerHTML = '<p id="param-warning">This pattern is not suitable for deployment in outer voice pair.</p>';
+    } else {
+        warningBox.innerHTML = '';
+    }
 }
 
 // hides all filter menus

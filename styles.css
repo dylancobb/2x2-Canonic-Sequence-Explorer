@@ -232,7 +232,7 @@ body {
     margin: 0px;
 }
 
-.param1, .param2, .param3, .param4, .param5, .param6, .param7 {
+.param1, .param2, .param3, .param4, .param5, .param6, .param7, .warning {
     position: absolute;
 }
 
@@ -262,6 +262,19 @@ body {
 
 .param7 {
     top: 252px;
+}
+
+.warning {
+    top: 302px;
+}
+
+#param-warning {
+    margin: 0 0 0 20px;
+    padding: 15px;
+    background-color:#F1C6CA;
+    border-left: 7px solid #BB2F3D;
+    border-radius: 4px;
+    box-shadow: 2px 2px 0px #ccc;
 }
 
 .vspace {
