@@ -405,8 +405,15 @@ function countPrint() {
 
 let jvFilterBox = document.getElementById("jv-filter");
 let entryFilterBox = document.getElementById("entry-filter");
+let modelFilterBox = document.getElementById("model-filter");
 
-showJv();
+// set up arrays to track filters
+let jvFlag = new Array(14);
+let entryFlag = new Array(25);
+let modelFlag = new Array(15);
+
+showModel();
+resetFlags();
 
 // populate the pattern column
 for (let i = 0; i < 256; i++) {
@@ -414,56 +421,7 @@ for (let i = 0; i < 256; i++) {
     para.className = 'pattern';
     para.id = "pattern" + i;
     para.onclick = function () {
-        // Show pattern name
-        const patName = document.getElementById('pattern-name');
-        patName.innerHTML = hexcode(pat[i].val);
-        // Show pattern Jv
-        const jv = document.getElementById('jv');
-        switch (pat[i].jv) {
-            case 0: case -3: case -4: case -7: case -10: case -11:
-                jv.innerHTML = "<sup>1</sup><em>Jv</em> = " + pat[i].jv;
-                break;
-            default:
-                jv.innerHTML = "<sup>2</sup><em>Jv</em> = " + pat[i].jv;
-                break;
-        }
-        // Show pattern entry intervals
-        const entries = document.getElementById('entry');
-        const firstEntry = pat[i].entry[0] > 0 ? "↗" + pat[i].entry[0] :
-        pat[i].entry[0] < 0 ? "↘" + Math.abs(pat[i].entry[0]) : "→0";
-        const secondEntry = pat[i].entry[1] > 0 ? "↗" + pat[i].entry[1] :
-        pat[i].entry[1] < 0 ? "↘" + Math.abs(pat[i].entry[1]) : "→0";
-        entries.innerHTML = firstEntry + ", " + secondEntry;
-        // Show pattern alias
-        const alias = document.getElementById('alias');
-        alias.innerHTML = same_check(pat[i].val, getAlias(pat[i].val)) ? "N/A" :
-        hexcode(getAlias(pat[i].val));
-        // Show pattern retrograde
-        const retro = document.getElementById('retro');
-        same_check(pat[i].val, getRetro(pat[i].val)) ? retro.innerHTML = "N/A" :
-        retro.innerHTML = hexcode(getRetro(pat[i].val));
-        // Show pattern note swap
-        const nswap = document.getElementById('nswap');
-        nswap.innerHTML = pat[i].nswap ? hexcode(pat[i].nswap) : "N/A";
-        // Show pattern octave swap
-        const oswap = document.getElementById('oswap');
-        oswap.innerHTML = pat[i].oswap ? hexcode(pat[i].oswap) : "N/A";
-        // Show root sequences
-        const seqs = document.getElementById('seqs');
-        switch (pat[i].seqs.length) {
-            case 1:
-                seqs.innerHTML = stringseqs(pat[i].seqs[0]);
-                break;
-            case 2:
-                seqs.innerHTML = stringseqs(pat[i].seqs[0])
-                + " or " + stringseqs(pat[i].seqs[1]);
-                break;
-            case 3:
-                seqs.innerHTML = stringseqs(pat[i].seqs[0])
-                + ", " + stringseqs(pat[i].seqs[1])
-                + ", or " + stringseqs(pat[i].seqs[2]);
-                break;
-        };
+        patternData(i);
     };
 
     let node = document.createTextNode(hexcode(pat[i].val));
@@ -473,9 +431,63 @@ for (let i = 0; i < 256; i++) {
     element.appendChild(para);
 }
 
+function patternData(i) {
+    // Show pattern name
+    const patName = document.getElementById('pattern-name');
+    patName.innerHTML = hexcode(pat[i].val);
+    // Show pattern Jv
+    const jv = document.getElementById('jv');
+    switch (pat[i].jv) {
+        case 0: case -3: case -4: case -7: case -10: case -11:
+            jv.innerHTML = "<sup>1</sup><em>Jv</em> = " + pat[i].jv;
+            break;
+        default:
+            jv.innerHTML = "<sup>2</sup><em>Jv</em> = " + pat[i].jv;
+            break;
+    }
+    // Show pattern entry intervals
+    const entries = document.getElementById('entry');
+    const firstEntry = pat[i].entry[0] > 0 ? "↗" + pat[i].entry[0] :
+    pat[i].entry[0] < 0 ? "↘" + Math.abs(pat[i].entry[0]) : "→0";
+    const secondEntry = pat[i].entry[1] > 0 ? "↗" + pat[i].entry[1] :
+    pat[i].entry[1] < 0 ? "↘" + Math.abs(pat[i].entry[1]) : "→0";
+    entries.innerHTML = firstEntry + ", " + secondEntry;
+    // Show pattern alias
+    const alias = document.getElementById('alias');
+    alias.innerHTML = same_check(pat[i].val, getAlias(pat[i].val)) ? "N/A" :
+    hexcode(getAlias(pat[i].val));
+    // Show pattern retrograde
+    const retro = document.getElementById('retro');
+    same_check(pat[i].val, getRetro(pat[i].val)) ? retro.innerHTML = "N/A" :
+    retro.innerHTML = hexcode(getRetro(pat[i].val));
+    // Show pattern note swap
+    const nswap = document.getElementById('nswap');
+    nswap.innerHTML = pat[i].nswap ? hexcode(pat[i].nswap) : "N/A";
+    // Show pattern octave swap
+    const oswap = document.getElementById('oswap');
+    oswap.innerHTML = pat[i].oswap ? hexcode(pat[i].oswap) : "N/A";
+    // Show root sequences
+    const seqs = document.getElementById('seqs');
+    switch (pat[i].seqs.length) {
+        case 1:
+            seqs.innerHTML = stringseqs(pat[i].seqs[0]);
+            break;
+        case 2:
+            seqs.innerHTML = stringseqs(pat[i].seqs[0])
+            + " or " + stringseqs(pat[i].seqs[1]);
+            break;
+        case 3:
+            seqs.innerHTML = stringseqs(pat[i].seqs[0])
+            + ", " + stringseqs(pat[i].seqs[1])
+            + ", or " + stringseqs(pat[i].seqs[2]);
+            break;
+    };
+}
+
 function hideAll() {
     jvFilterBox.style.display = "none";
     entryFilterBox.style.display = "none";
+    modelFilterBox.style.display = "none";
 }
 
 function resetFilterButtons() {
@@ -500,7 +512,7 @@ function showJv() {
     document.getElementById("jv-toggle").style.color = "white";
 }
 
-// open the Jv filter menu, close the rest
+// open the Entry filter menu, close the rest
 function showEntry() {
     hideAll();
     entryFilterBox.style.display = "block";
@@ -509,25 +521,54 @@ function showEntry() {
     document.getElementById("entry-toggle").style.color = "white";
 }
 
-// set up array to track JJv filtering
-let jvFlag = new Array(14);
-for (let i = 0; i <= 13; i++) {
-    jvFlag[i] = true;
+// open the Model filter menu, close the rest
+function showModel() {
+    hideAll();
+    modelFilterBox.style.display = "block";
+    resetFilterButtons();
+    document.getElementById("model-toggle").style.backgroundColor = "#BB2F3D";
+    document.getElementById("model-toggle").style.color = "white";
+}
+
+function resetFlags() {
+    for (let i = 0; i <= 13; i++) {
+        jvFlag[i] = true;
+    }
+    for (let i = 0; i < 25; i++) {
+        entryFlag[i] = true;
+    }
+    for (let i = 0; i < 15; i++) {
+        modelFlag[i] = true;
+    }
 }
 
 // toggle the state of given Jv filters
 function jvToggle(x) {
     jvFlag[x] = !jvFlag[x];
-    applyJv();
+    applyFilters();
     jvButtonUpdate();
 }
 
-// hides/shows patterns based on Jv flags
-function applyJv() {
+// toggle the state of given entry filters
+function entryToggle(x) {
+    entryFlag[x + 12] = !entryFlag[x + 12];
+    applyFilters();
+    entryButtonUpdate();
+}
+
+// toggle the state of given model filters
+function modelToggle(x) {
+    modelFlag[x + 7] = !modelFlag[x + 7];
+    applyFilters();
+    modelButtonUpdate();
+}
+
+// hides/shows patterns based on all flags
+function applyFilters() {
     count = 0;
     for (let i = 0; i < 256; i++) {
         let thisPat = document.getElementById("pattern" + i);
-        if(filterJv(i)) {
+        if(filterJv(i) && filterEntry(i) && modelEntry(i)) {
             thisPat.style.display = "block";
             count++;
         } else {
@@ -537,11 +578,61 @@ function applyJv() {
     countPrint();
 }
 
+function filterReset() {
+    resetFlags();
+    applyFilters();
+    jvButtonUpdate();
+    entryButtonUpdate();
+    modelButtonUpdate();
+}
+
+
 // update the state of Jv button colours when toggling is changed
 function jvButtonUpdate() {
     for (let i = 0; i <= 13; i++) {
-        buttonCol = document.getElementById("jv-" + i)
+        const buttonCol = document.getElementById("jv-" + i);
         if (jvFlag[i]) {
+            buttonCol.style.backgroundColor = "#BB2F3D";
+            buttonCol.style.color = "white";
+        } else {
+            buttonCol.style.backgroundColor = "#ccc";
+            buttonCol.style.color = "black";
+        }
+    }
+}
+
+// update the state of entry button colours when toggling is changed
+function entryButtonUpdate() {
+    for (let i = -12; i <= 12; i++) {
+        let buttonCol;
+        if (i >= 0) {
+            buttonCol = document.getElementById("entry-" + i);
+        } else {
+            buttonCol = document.getElementById("entry-m" + Math.abs(i));
+        }
+        if (entryFlag[i + 12]) {
+            buttonCol.style.backgroundColor = "#BB2F3D";
+            buttonCol.style.color = "white";
+        } else {
+            buttonCol.style.backgroundColor = "#ccc";
+            buttonCol.style.color = "black";
+        }
+    }
+}
+
+// update the state of model button colours when toggling is changed
+function modelButtonUpdate() {
+    for (let i = -7; i <= 7; i++) {
+        if (i === 6 || i === -6) {
+            continue;
+        }
+        let buttonCol;
+        if (i >= 0) {
+            buttonCol = document.getElementById("model-" + i);
+        } else {
+            buttonCol = document.getElementById("model-m" + Math.abs(i));
+        }
+        if (modelFlag[i + 7]) {
             buttonCol.style.backgroundColor = "#BB2F3D";
             buttonCol.style.color = "white";
         } else {
@@ -560,12 +651,30 @@ function filterJv(x) {
     return false;
 }
 
+// returns true if a given pattern matches the currently toggled entry int, else false
+function filterEntry(x) {
+    for (let i = -12; i <= 12; i++) {
+        if((pat[x].entry[0] === i || pat[x].entry[1] === i) && entryFlag[i + 12])
+            return true;
+    }
+    return false;
+}
+
+// returns true if a given pattern matches the currently toggled model, else false
+function modelEntry(x) {
+    for (let i = -7; i <= 7; i++) {
+        if((pat[x].val[0] === i || pat[x].val[1] === i) && modelFlag[i + 7])
+            return true;
+    }
+    return false;
+}
+
 // set all Jv toggles to off
 function jvNone() {
     for (let i = 0; i <= 13; i++) {
         jvFlag[i] = false;
     }
-    applyJv();
+    applyFilters();
     jvButtonUpdate();
 }
 
@@ -574,6 +683,42 @@ function jvAll() {
     for (let i = 0; i <= 13; i++) {
         jvFlag[i] = true;
     }
-    applyJv();
+    applyFilters();
     jvButtonUpdate();
+}
+
+// set all entry toggles to off
+function entryNone() {
+    for (let i = -12; i <= 12; i++) {
+        entryFlag[i + 12] = false;
+    }
+    applyFilters();
+    entryButtonUpdate();
+}
+
+// set all entry toggles to on
+function entryAll() {
+    for (let i = -12; i <= 12; i++) {
+        entryFlag[i + 12] = true;
+    }
+    applyFilters();
+    entryButtonUpdate();
+}
+
+// set all model toggles to off
+function modelNone() {
+    for (let i = -7; i <= 7; i++) {
+        modelFlag[i + 7] = false;
+    }
+    applyFilters();
+    modelButtonUpdate();
+}
+
+// set all entry toggles to on
+function modelAll() {
+    for (let i = -7; i <= 7; i++) {
+        modelFlag[i + 7] = true;
+    }
+    applyFilters();
+    modelButtonUpdate();
 }

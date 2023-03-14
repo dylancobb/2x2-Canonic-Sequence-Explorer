@@ -11,13 +11,9 @@ body {
     padding: 0;
 }
 
-main {
-    margin-top: -10px;
-}
-
 #logo {
     vertical-align: middle;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 #logo:hover {
@@ -69,9 +65,9 @@ main {
     border-radius: 4px;
 }
 
-.rec-blank {
-    background-color: #999;
-    color: black;
+.rec-reset {
+    background-color: #666;
+    color: white;
     text-align: center;
     padding: 0.5em;
     margin: 0;
@@ -80,15 +76,12 @@ main {
     border-radius: 4px;
 }
 
-.entry-button {
-    background-color: #BB2F3D;
-    color: white;
-    text-align: center;
-    padding: 0.5em;
-    margin: 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 4px;
+.rec-reset:hover {
+    background-color: #999;
+}
+
+.rec-reset:active {
+    background-color: #aaa;
 }
 
 .wide-entry {
@@ -120,11 +113,11 @@ main {
     row-gap: 2px;
 }
 
-#jv-filter, #entry-filter {
+#jv-filter, #entry-filter, #model-filter {
     display: none;
 }
 
-#jv-buttons {
+#jv-buttons, #model-buttons {
     display: inline-grid;
     vertical-align: middle;
     grid-template-columns: 80px repeat(7, 40px);

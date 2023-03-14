@@ -33,7 +33,7 @@
                 <p class="rec-button" id="model-toggle" onclick="showModel()">Model</p>
                 <p class="rec-button" id="vp-toggle" onclick="showVP()">VP</p>
                 <p class="rec-button" id="root-toggle" onclick="showRoot()">Root</p>
-                <p class="rec-blank"></p>
+                <p class="rec-reset" id="filter-reset" onclick="filterReset()">Reset</p>
             </div>
             <div id="jv-filter">
                 <span class="filter-label"><em>Jv</em></span>
@@ -60,32 +60,52 @@
                 <span class="filter-label">Entry</span>
                 <div id="entry-buttons">
                     <p class="rec-button" id="entry-none" onclick="entryNone()">None</p>
-                    <p class="entry-button tall" id="entry-0" onclick="entryToggle(0)">→0</p>
-                    <p class="entry-button" id="entry-1" onclick="entryToggle(1)">↗1</p>
-                    <p class="entry-button" id="entry-2" onclick="entryToggle(2)">↗2</p>
-                    <p class="entry-button" id="entry-3" onclick="entryToggle(3)">↗3</p>
-                    <p class="entry-button" id="entry-4" onclick="entryToggle(4)">↗4</p>
-                    <p class="entry-button" id="entry-5" onclick="entryToggle(5)">↗5</p>
-                    <p class="entry-button" id="entry-6" onclick="entryToggle(6)">↗6</p>
-                    <p class="entry-button" id="entry-7" onclick="entryToggle(7)">↗7</p>
-                    <p class="entry-button" id="entry-8" onclick="entryToggle(8)">↗8</p>
-                    <p class="entry-button" id="entry-9" onclick="entryToggle(9)">↗9</p>
-                    <p class="entry-button wide-entry" id="entry-10" onclick="entryToggle(10)">↗10</p>
-                    <p class="entry-button wide-entry" id="entry-11" onclick="entryToggle(11)">↗11</p>
-                    <p class="entry-button wide-entry" id="entry-12" onclick="entryToggle(12)">↗12</p>
+                    <p class="square-button tall" id="entry-0" onclick="entryToggle(0)">→0</p>
+                    <p class="square-button" id="entry-1" onclick="entryToggle(1)">↗1</p>
+                    <p class="square-button" id="entry-2" onclick="entryToggle(2)">↗2</p>
+                    <p class="square-button" id="entry-3" onclick="entryToggle(3)">↗3</p>
+                    <p class="square-button" id="entry-4" onclick="entryToggle(4)">↗4</p>
+                    <p class="square-button" id="entry-5" onclick="entryToggle(5)">↗5</p>
+                    <p class="square-button" id="entry-6" onclick="entryToggle(6)">↗6</p>
+                    <p class="square-button" id="entry-7" onclick="entryToggle(7)">↗7</p>
+                    <p class="square-button" id="entry-8" onclick="entryToggle(8)">↗8</p>
+                    <p class="square-button" id="entry-9" onclick="entryToggle(9)">↗9</p>
+                    <p class="square-button wide-entry" id="entry-10" onclick="entryToggle(10)">↗10</p>
+                    <p class="square-button wide-entry" id="entry-11" onclick="entryToggle(11)">↗11</p>
+                    <p class="square-button wide-entry" id="entry-12" onclick="entryToggle(12)">↗12</p>
                     <p class="rec-button" id="entry-all" onclick="entryAll()">All</p>
-                    <p class="entry-button" id="entry-m1" onclick="entryToggle(-1)">↘1</p>
-                    <p class="entry-button" id="entry-m2" onclick="entryToggle(-2)">↘2</p>
-                    <p class="entry-button" id="entry-m3" onclick="entryToggle(-3)">↘3</p>
-                    <p class="entry-button" id="entry-m4" onclick="entryToggle(-4)">↘4</p>
-                    <p class="entry-button" id="entry-m5" onclick="entryToggle(-5)">↘5</p>
-                    <p class="entry-button" id="entry-m6" onclick="entryToggle(-6)">↘6</p>
-                    <p class="entry-button" id="entry-m7" onclick="entryToggle(-7)">↘7</p>
-                    <p class="entry-button" id="entry-m8" onclick="entryToggle(-8)">↘8</p>
-                    <p class="entry-button" id="entry-m9" onclick="entryToggle(-9)">↘9</p>
-                    <p class="entry-button wide-entry" id="entry-m10" onclick="entryToggle(-10)">↘10</p>
-                    <p class="entry-button wide-entry" id="entry-m11" onclick="entryToggle(-11)">↘11</p>
-                    <p class="entry-button wide-entry" id="entry-m12" onclick="entryToggle(-12)">↘12</p>
+                    <p class="square-button" id="entry-m1" onclick="entryToggle(-1)">↘1</p>
+                    <p class="square-button" id="entry-m2" onclick="entryToggle(-2)">↘2</p>
+                    <p class="square-button" id="entry-m3" onclick="entryToggle(-3)">↘3</p>
+                    <p class="square-button" id="entry-m4" onclick="entryToggle(-4)">↘4</p>
+                    <p class="square-button" id="entry-m5" onclick="entryToggle(-5)">↘5</p>
+                    <p class="square-button" id="entry-m6" onclick="entryToggle(-6)">↘6</p>
+                    <p class="square-button" id="entry-m7" onclick="entryToggle(-7)">↘7</p>
+                    <p class="square-button" id="entry-m8" onclick="entryToggle(-8)">↘8</p>
+                    <p class="square-button" id="entry-m9" onclick="entryToggle(-9)">↘9</p>
+                    <p class="square-button wide-entry" id="entry-m10" onclick="entryToggle(-10)">↘10</p>
+                    <p class="square-button wide-entry" id="entry-m11" onclick="entryToggle(-11)">↘11</p>
+                    <p class="square-button wide-entry" id="entry-m12" onclick="entryToggle(-12)">↘12</p>
+                </div>
+            </div>
+            <div id="model-filter">
+                <span class="filter-label">Model</span>
+                <div id="model-buttons">
+                    <p class="rec-button" id="model-none" onclick="modelNone()">None</p>
+                    <p class="square-button tall" id="model-0" onclick="modelToggle(0)">S</p>
+                    <p class="square-button" id="model-1" onclick="modelToggle(1)">U1</p>
+                    <p class="square-button" id="model-2" onclick="modelToggle(2)">U2</p>
+                    <p class="square-button" id="model-3" onclick="modelToggle(3)">U3</p>
+                    <p class="square-button" id="model-4" onclick="modelToggle(4)">U4</p>
+                    <p class="square-button" id="model-5" onclick="modelToggle(5)">U5</p>
+                    <p class="square-button" id="model-7" onclick="modelToggle(7)">U7</p>
+                    <p class="rec-button" id="model-all" onclick="modelAll()">All</p>
+                    <p class="square-button" id="model-m1" onclick="modelToggle(-1)">D1</p>
+                    <p class="square-button" id="model-m2" onclick="modelToggle(-2)">D2</p>
+                    <p class="square-button" id="model-m3" onclick="modelToggle(-3)">D3</p>
+                    <p class="square-button" id="model-m4" onclick="modelToggle(-4)">D4</p>
+                    <p class="square-button" id="model-m5" onclick="modelToggle(-5)">D5</p>
+                    <p class="square-button" id="model-m7" onclick="modelToggle(-7)">D7</p>
                 </div>
             </div>
         </div>
