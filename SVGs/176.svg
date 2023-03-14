@@ -1,37 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" width="53.19mm" height="20.71mm" viewBox="7.6043 -0.0000 26.9647 10.5000">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.2" width="55.81mm" height="22.68mm" viewBox="7.6043 -0.0000 28.2908 11.5000">
 <style type="text/css">
 <![CDATA[
 tspan { white-space: pre; }
 ]]>
 </style>
-<g transform="translate(0.0000, 8.0000)">
-<rect x="29.9991" y="-0.0964" width="2.0620" height="0.1928" ry="0.0964" fill="currentColor"/>
+<g transform="translate(0.0000, 8.5000)">
+<rect x="26.8188" y="-0.0964" width="2.0620" height="0.1928" ry="0.0964" fill="currentColor"/>
 </g>
-<g transform="translate(7.6043, 7.0000)">
-<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="26.9647" y2="0"/>
+<g transform="translate(0.0000, 2.5000)">
+<rect x="9.2606" y="-0.0964" width="2.0620" height="0.1928" ry="0.0964" fill="currentColor"/>
 </g>
-<g transform="translate(7.6043, 6.0000)">
-<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="26.9647" y2="0"/>
+<g transform="translate(7.6043, 7.5000)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="28.2908" y2="0"/>
 </g>
-<g transform="translate(7.6043, 5.0000)">
-<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="26.9647" y2="0"/>
+<g transform="translate(7.6043, 6.5000)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="28.2908" y2="0"/>
 </g>
-<g transform="translate(7.6043, 4.0000)">
-<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="26.9647" y2="0"/>
+<g transform="translate(7.6043, 5.5000)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="28.2908" y2="0"/>
 </g>
-<g transform="translate(7.6043, 3.0000)">
-<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="26.9647" y2="0"/>
+<g transform="translate(7.6043, 4.5000)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="28.2908" y2="0"/>
+</g>
+<g transform="translate(7.6043, 3.5000)">
+<line stroke-linejoin="round" stroke-linecap="round" stroke-width="0.0928" stroke="currentColor" x1="0.0464" y1="0" x2="28.2908" y2="0"/>
 </g>
 <g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:28:29">
-<g transform="translate(22.0474, 5.0000)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:27:28">
+<g transform="translate(23.1234, 7.0000)">
 <path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
 c22 15 86 50 188 50z" fill="currentColor"/>
 </g>
 </a>
 </g>
 <g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:15:16">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:15:16">
 <g transform="translate(9.6043, 2.5000)">
 <path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
 c22 15 86 50 188 50z" fill="currentColor"/>
@@ -39,143 +42,143 @@ c22 15 86 50 188 50z" fill="currentColor"/>
 </a>
 </g>
 <g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:55:56">
-<g transform="translate(9.6043, 4.5000)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:55:56">
+<g transform="translate(9.6043, 7.0000)">
 <path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
 c22 15 86 50 188 50z" fill="currentColor"/>
 </g>
 </a>
 </g>
 <g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<g transform="translate(10.9186, 5.0000)">
-<rect x="-0.0603" y="-5.0000" width="0.1207" height="2.2359" ry="0.0356" fill="currentColor"/>
+<g transform="translate(10.9186, 5.5000)">
+<rect x="-0.0603" y="-5.5000" width="0.1207" height="2.2359" ry="0.0356" fill="currentColor"/>
 </g>
 </g>
 <g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<g transform="translate(9.6646, 5.0000)">
-<rect x="-0.0603" y="-0.2359" width="0.1207" height="3.2359" ry="0.0356" fill="currentColor"/>
-</g>
-</g>
-<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:20:21">
-<g transform="translate(13.7520, 3.5000)">
-<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
-c22 15 86 50 188 50z" fill="currentColor"/>
-</g>
-</a>
-</g>
-<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:60:61">
-<g transform="translate(13.7520, 5.0000)">
-<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
-c22 15 86 50 188 50z" fill="currentColor"/>
-</g>
-</a>
-</g>
-<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<g transform="translate(15.0663, 5.0000)">
-<rect x="-0.0603" y="-4.3333" width="0.1207" height="2.5692" ry="0.0356" fill="currentColor"/>
-</g>
-</g>
-<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<g transform="translate(13.8123, 5.0000)">
-<rect x="-0.0603" y="0.2641" width="0.1207" height="3.0692" ry="0.0356" fill="currentColor"/>
-</g>
-</g>
-<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:24:25">
-<g transform="translate(17.8997, 4.0000)">
-<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
-c22 15 86 50 188 50z" fill="currentColor"/>
-</g>
-</a>
-</g>
-<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:63:64">
-<g transform="translate(17.8997, 6.0000)">
-<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
-c22 15 86 50 188 50z" fill="currentColor"/>
-</g>
-</a>
-</g>
-<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<g transform="translate(19.2140, 5.0000)">
-<rect x="-0.0603" y="-4.0000" width="0.1207" height="2.7359" ry="0.0356" fill="currentColor"/>
-</g>
-</g>
-<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<g transform="translate(17.9600, 5.0000)">
-<rect x="-0.0603" y="1.2641" width="0.1207" height="2.7359" ry="0.0356" fill="currentColor"/>
-</g>
-</g>
-<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:66:67">
-<g transform="translate(22.0474, 6.5000)">
-<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
-c22 15 86 50 188 50z" fill="currentColor"/>
-</g>
-</a>
-</g>
-<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<g transform="translate(23.3617, 5.0000)">
-<rect x="-0.0603" y="-3.3333" width="0.1207" height="3.0692" ry="0.0356" fill="currentColor"/>
-</g>
-</g>
-<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<g transform="translate(22.1077, 5.0000)">
+<g transform="translate(9.6646, 5.5000)">
 <rect x="-0.0603" y="1.7641" width="0.1207" height="2.5692" ry="0.0356" fill="currentColor"/>
 </g>
 </g>
 <g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:31:32">
-<g transform="translate(26.1950, 5.5000)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:20:21">
+<g transform="translate(14.3444, 6.0000)">
 <path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
 c22 15 86 50 188 50z" fill="currentColor"/>
 </g>
 </a>
 </g>
 <g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:69:70">
-<g transform="translate(26.1950, 7.5000)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:59:60">
+<g transform="translate(13.8770, 4.5000)">
 <path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
 c22 15 86 50 188 50z" fill="currentColor"/>
 </g>
 </a>
 </g>
 <g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<g transform="translate(27.5094, 5.0000)">
+<g transform="translate(15.6587, 5.5000)">
 <rect x="-0.0603" y="-3.0000" width="0.1207" height="3.2359" ry="0.0356" fill="currentColor"/>
 </g>
 </g>
 <g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<g transform="translate(26.2554, 5.0000)">
-<rect x="-0.0603" y="2.7641" width="0.1207" height="2.2359" ry="0.0356" fill="currentColor"/>
+<g transform="translate(13.9373, 5.5000)">
+<rect x="-0.0603" y="-0.7359" width="0.1207" height="3.2359" ry="0.0356" fill="currentColor"/>
 </g>
 </g>
 <g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:34:35">
-<g transform="translate(30.3427, 6.5000)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:23:24">
+<g transform="translate(18.3834, 3.5000)">
 <path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
 c22 15 86 50 188 50z" fill="currentColor"/>
 </g>
 </a>
 </g>
 <g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/SVGs/176.ly:29:72:73">
-<g transform="translate(30.3427, 8.0000)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:63:64">
+<g transform="translate(18.3834, 8.0000)">
 <path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
 c22 15 86 50 188 50z" fill="currentColor"/>
 </g>
 </a>
 </g>
 <g color="rgb(73.3333%, 18.4314%, 23.9216%)">
-<g transform="translate(31.6570, 5.0000)">
+<g transform="translate(19.6977, 5.5000)">
+<rect x="-0.0603" y="-4.6667" width="0.1207" height="2.4025" ry="0.0356" fill="currentColor"/>
+</g>
+</g>
+<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
+<g transform="translate(18.4437, 5.5000)">
+<rect x="-0.0603" y="2.7641" width="0.1207" height="2.2359" ry="0.0356" fill="currentColor"/>
+</g>
+</g>
+<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:66:67">
+<g transform="translate(22.6561, 5.5000)">
+<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
+c22 15 86 50 188 50z" fill="currentColor"/>
+</g>
+</a>
+</g>
+<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
+<g transform="translate(24.4377, 5.5000)">
 <rect x="-0.0603" y="-2.0000" width="0.1207" height="3.2359" ry="0.0356" fill="currentColor"/>
 </g>
 </g>
 <g color="rgb(23.5294%, 36.8627%, 76.8627%)">
-<g transform="translate(30.4031, 5.0000)">
-<rect x="-0.0603" y="3.2641" width="0.1207" height="2.2359" ry="0.0356" fill="currentColor"/>
+<g transform="translate(22.7164, 5.5000)">
+<rect x="-0.0603" y="0.2641" width="0.1207" height="3.0692" ry="0.0356" fill="currentColor"/>
+</g>
+</g>
+<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:30:31">
+<g transform="translate(27.1624, 4.5000)">
+<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
+c22 15 86 50 188 50z" fill="currentColor"/>
+</g>
+</a>
+</g>
+<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:69:70">
+<g transform="translate(27.1624, 9.0000)">
+<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
+c22 15 86 50 188 50z" fill="currentColor"/>
+</g>
+</a>
+</g>
+<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
+<g transform="translate(28.4767, 5.5000)">
+<rect x="-0.0603" y="-4.0000" width="0.1207" height="2.7359" ry="0.0356" fill="currentColor"/>
+</g>
+</g>
+<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
+<g transform="translate(27.2228, 5.5000)">
+<rect x="-0.0603" y="3.7641" width="0.1207" height="2.2359" ry="0.0356" fill="currentColor"/>
+</g>
+</g>
+<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:34:35">
+<g transform="translate(31.9025, 8.0000)">
+<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
+c22 15 86 50 188 50z" fill="currentColor"/>
+</g>
+</a>
+</g>
+<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
+<a style="color:inherit;" xlink:href="textedit:///Users/hex/Desktop/svglily/176.ly:29:71:72">
+<g transform="translate(31.4351, 6.5000)">
+<path transform="scale(0.0040, -0.0040)" d="M315 66c0 23 -18 42 -42 42c-40 0 -206 -113 -234 -146c-7 -8 -10 -18 -10 -28c0 -23 18 -42 42 -42c40 0 206 113 234 146c7 8 10 18 10 28zM263 135c39 0 81 -13 81 -69c0 -27 -18 -112 -76 -151c-22 -15 -86 -50 -188 -50c-39 0 -80 13 -80 69c0 27 17 112 75 151
+c22 15 86 50 188 50z" fill="currentColor"/>
+</g>
+</a>
+</g>
+<g color="rgb(73.3333%, 18.4314%, 23.9216%)">
+<g transform="translate(33.2168, 5.5000)">
+<rect x="-0.0603" y="-1.0000" width="0.1207" height="3.2359" ry="0.0356" fill="currentColor"/>
+</g>
+</g>
+<g color="rgb(23.5294%, 36.8627%, 76.8627%)">
+<g transform="translate(31.4955, 5.5000)">
+<rect x="-0.0603" y="1.2641" width="0.1207" height="2.7359" ry="0.0356" fill="currentColor"/>
 </g>
 </g>
 </svg>
