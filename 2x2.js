@@ -441,6 +441,7 @@ for (let i = 0; i < 256; i++) {
 
 // populates pattern data block with specified pattern's data
 function patternData(i) {
+    console.log(i);
     // Show pattern name
     const patName = document.getElementById('pattern-name');
     patName.innerHTML = hexcode(pat[i].val);
@@ -497,10 +498,13 @@ function patternData(i) {
     const warningBox = document.getElementById('warning-container');
     if (Math.abs(pat[i].val[2] % 7) === 3 || Math.abs(pat[i].val[3] % 7) === 3) {
         warningBox.innerHTML = '<p id="param-warning">This pattern is only suitable for deployment in upper voice pairs.</p>';
-    } else if (pat[i].val[0] * pat[i].val[1] > 0
+    } else if ((pat[i].val[0] * pat[i].val[1] > 0
         && (Math.abs(pat[i].val[2] % 7) === 0 || Math.abs(pat[i].val[2] % 7) === 4
-        || Math.abs(pat[i].val[3] % 7) === 0 || Math.abs(pat[i].val[3] % 7) === 4)) {
-            warningBox.innerHTML = '<p id="param-warning">This pattern is not suitable for deployment in outer voice pair.</p>';
+        || Math.abs(pat[i].val[3] % 7) === 0 || Math.abs(pat[i].val[3] % 7) === 4))
+        || ((Math.abs(pat[i].val[2] % 7) === 0 || Math.abs(pat[i].val[2] % 7) === 4)
+        && (Math.abs(pat[i].val[3] % 7) === 0 || Math.abs(pat[i].val[3] % 7) === 4))
+        && i !== 33 && i !== 36 && i !== 151 && i !== 213) {
+            warningBox.innerHTML = '<p id="param-warning">This pattern may be unsuitable for deployment in the outer voice pair.</p>';
     } else {
         warningBox.innerHTML = '';
     }
@@ -819,12 +823,16 @@ function filterVP(x) {
         || (Math.abs(pat[x].val[2] % 7) === 3 || Math.abs(pat[x].val[3] % 7) === 3))
             return false;
         return true;
-    // valid anywhere except the outer voice pair (has directs or fourths)
+    // valid anywhere except the outer voice pair (has directs or fourths
+    // or all perfect consonances
     } else if (vpFlag === 2) {
         if ((pat[x].val[0] * pat[x].val[1] > 0
         && (Math.abs(pat[x].val[2] % 7) === 0 || Math.abs(pat[x].val[2] % 7) === 4
         || Math.abs(pat[x].val[3] % 7) === 0 || Math.abs(pat[x].val[3] % 7) === 4))
-        || (Math.abs(pat[x].val[2] % 7) === 3 || Math.abs(pat[x].val[3] % 7) === 3))
+        || (Math.abs(pat[x].val[2] % 7) === 3 || Math.abs(pat[x].val[3] % 7) === 3)
+        || ((Math.abs(pat[x].val[2] % 7) === 0 || Math.abs(pat[x].val[2] % 7) === 4)
+        && (Math.abs(pat[x].val[3] % 7) === 0 || Math.abs(pat[x].val[3] % 7) === 4))
+        && x !== 33 && x !== 36 && x !== 151 && x !== 213)
             return true;
     // upper voice pair only (has fourths)
     } else if (vpFlag === 3) {
