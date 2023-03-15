@@ -441,7 +441,6 @@ for (let i = 0; i < 256; i++) {
 
 // populates pattern data block with specified pattern's data
 function patternData(i) {
-    console.log(i);
     // Show pattern name
     const patName = document.getElementById('pattern-name');
     patName.innerHTML = hexcode(pat[i].val);
@@ -469,13 +468,13 @@ function patternData(i) {
     // Show pattern retrograde
     const retro = document.getElementById('retro');
     same_check(pat[i].val, getRetro(pat[i].val)) ? retro.innerHTML = "N/A" :
-    retro.innerHTML = hexcode(getRetro(pat[i].val));
+    retro.innerHTML = `<span class="pattern-link" onclick="retroGoto(${i})">${hexcode(getRetro(pat[i].val))}</span>`;
     // Show pattern note swap
     const nswap = document.getElementById('nswap');
-    nswap.innerHTML = pat[i].nswap ? hexcode(pat[i].nswap) : "N/A";
+    nswap.innerHTML = pat[i].nswap ? `<span class="pattern-link" onclick="nswapGoto(${i})">${hexcode(pat[i].nswap)}</span>` : "N/A";
     // Show pattern octave swap
     const oswap = document.getElementById('oswap');
-    oswap.innerHTML = pat[i].oswap ? hexcode(pat[i].oswap) : "N/A";
+    oswap.innerHTML = pat[i].oswap ? `<span class="pattern-link" onclick="oswapGoto(${i})">${hexcode(pat[i].oswap)}</span>` : "N/A";
     // Show root sequences
     const seqs = document.getElementById('seqs');
     switch (pat[i].seqs.length) {
@@ -508,6 +507,27 @@ function patternData(i) {
     } else {
         warningBox.innerHTML = '';
     }
+}
+
+// takes a pattern array and finds its index (linear search)
+function findPattern(A) {
+    for (let i = 0; i <= 256; i++) {
+        if (pat[i].val[0] === A[0] && pat[i].val[1] === A[1]
+        && pat[i].val[2] === A[2] && pat[i].val[3] === A[3])
+        return i;
+    }
+}
+
+function retroGoto(x) {
+    patternData(findPattern(getRetro(pat[x].val)));
+}
+
+function nswapGoto(x) {
+    patternData(findPattern(pat[x].nswap));
+}
+
+function oswapGoto(x) {
+    patternData(findPattern(pat[x].oswap));
 }
 
 // hides all filter menus

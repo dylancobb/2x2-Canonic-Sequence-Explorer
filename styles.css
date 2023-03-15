@@ -237,35 +237,35 @@ body {
 }
 
 .param1 {
-    top: 72px;
+    top: 74px;
 }
 
 .param2 {
-    top: 102px;
+    top: 106px;
 }
 
 .param3 {
-    top: 132px;
+    top: 138px;
 }
 
 .param4 {
-    top: 162px;
+    top: 170px;
 }
 
 .param5 {
-    top: 192px;
+    top: 202px;
 }
 
 .param6 {
-    top: 222px;
+    top: 234px;
 }
 
 .param7 {
-    top: 252px;
+    top: 266px;
 }
 
 .warning {
-    top: 302px;
+    top: 318px;
 }
 
 #param-warning {
@@ -303,14 +303,23 @@ body {
     padding: 0.6em 1.2em;
 }
 
-.pattern:hover {
+.pattern:hover, .pattern-link:hover {
     background-color: #F1C6CA;
     color: black;
 }
 
-.pattern:active {
+.pattern:active, .pattern-link:active {
     background-color: #D55864;
     color: white;
+}
+
+.pattern-link {
+    margin-left: 5px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background-color: #ccc;
+    color: black;
+    box-shadow: 1px 1px 0px #888;
 }
 
 /* width */
