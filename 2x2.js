@@ -154,7 +154,11 @@ function oswap_gen(a) {
     // make sure oswapped pattern is valid and non-redundant again
     if (model_check(swap[0], swap[1]) === false
         || same_check(swap, a) === true
-        || (swap[2] === 11 & swap[3] === 4))
+        // no counterparallels
+        || (swap[2] === 11 & swap[3] === 4)
+        // no parallels
+        || (swap[0] !== 0 && swap[0] === swap[1]
+        && (swap[2] === 0 || swap[2] === 4)))
         return false;
 
     return swap;
