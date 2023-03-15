@@ -65,7 +65,7 @@ body {
     border-radius: 4px;
 }
 
-.rec-reset {
+.rec-button-dark {
     background-color: #666;
     color: white;
     text-align: center;
@@ -76,11 +76,11 @@ body {
     border-radius: 4px;
 }
 
-.rec-reset:hover {
+.rec-button-dark:hover {
     background-color: #999;
 }
 
-.rec-reset:active {
+.rec-button-dark:active {
     background-color: #aaa;
 }
 

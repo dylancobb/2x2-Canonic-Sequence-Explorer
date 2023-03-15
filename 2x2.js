@@ -144,7 +144,7 @@ function oswap_gen(a) {
 
     // if oswapped pattern is invalid or redundant, try salvaging
     if (model_check(swap[0], swap[1]) === false
-        || same_check(swap, a) === true)
+    || same_check(swap, a) === true)
         salvage_swap(swap);
 
     // make sure pattern is in normal order
@@ -153,13 +153,25 @@ function oswap_gen(a) {
 
     // make sure oswapped pattern is valid and non-redundant again
     if (model_check(swap[0], swap[1]) === false
-        || same_check(swap, a) === true
-        // no counterparallels
-        || (swap[2] === 11 & swap[3] === 4)
-        // no parallels
-        || (swap[0] !== 0 && swap[0] === swap[1]
-        && (swap[2] === 0 || swap[2] === 4)))
+    || same_check(swap, a) === true
+    // no counterparallels
+    || (swap[2] === 11 & swap[3] === 4)
+    // no parallels
+    || (swap[0] !== 0 && swap[0] === swap[1]
+    && (swap[2] === 0 || swap[2] === 4))) {
+        // fringe case: another pattern may lead to this one via oswap. Backlink.
+        for (let i = 0; i < pat.length; i++) {
+            if (same_check(pat[i].oswap, a)) {
+                swap[0] = pat[i].val[0];
+                swap[1] = pat[i].val[1];
+                swap[2] = pat[i].val[2];
+                swap[3] = pat[i].val[3];
+                
+                return swap;
+            }
+        }
         return false;
+    }
 
     return swap;
 }
@@ -528,14 +540,17 @@ function findPattern(A) {
     return false;
 }
 
+// takes a pattern index, finds its retro and goes there
 function retroGoto(x) {
     patternData(findPattern(getRetro(pat[x].val)));
 }
 
+// takes a pattern index, finds its nswap and goes there
 function nswapGoto(x) {
     patternData(findPattern(pat[x].nswap));
 }
 
+// takes a pattern index, finds its oswap and goes there
 function oswapGoto(x) {
     patternData(findPattern(pat[x].oswap));
 }
@@ -848,10 +863,13 @@ function filterVP(x) {
     // valid in the outer voice pair (no direct perfects, no fourths)
     } else if (vpFlag === 1) {
         if ((pat[x].val[0] * pat[x].val[1] > 0
-        && (Math.abs(pat[x].val[2] % 7) === 0 || Math.abs(pat[x].val[2] % 7) === 4
-        || Math.abs(pat[x].val[3] % 7) === 0 || Math.abs(pat[x].val[3] % 7) === 4))
-        || (Math.abs(pat[x].val[2] % 7) === 3 || Math.abs(pat[x].val[3] % 7) === 3))
-            return false;
+            && (Math.abs(pat[x].val[2] % 7) === 0 || Math.abs(pat[x].val[2] % 7) === 4
+            || Math.abs(pat[x].val[3] % 7) === 0 || Math.abs(pat[x].val[3] % 7) === 4))
+            || (Math.abs(pat[x].val[2] % 7) === 3 || Math.abs(pat[x].val[3] % 7) === 3)
+            || ((Math.abs(pat[x].val[2] % 7) === 0 || Math.abs(pat[x].val[2] % 7) === 4)
+            && (Math.abs(pat[x].val[3] % 7) === 0 || Math.abs(pat[x].val[3] % 7) === 4))
+            && x !== 33 && x !== 36 && x !== 151 && x !== 213)
+                return false;
         return true;
     // valid anywhere except the outer voice pair (has directs or fourths
     // or all perfect consonances
