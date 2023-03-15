@@ -55,8 +55,12 @@ function consonances(i, j) {
             entry: [entry_a, entry_b],
             // note swap (will equal "false" if not viable)
             nswap: n === 0 ? false
-                : model_check(entry_a, entry_b) ? [entry_a, entry_b, k, -n]
-                    : false,
+                // model is melodically sound
+                : model_check(entry_a, entry_b)
+                // pattern is parallel-free
+                && !(entry_a !== 0 && entry_a === entry_b
+                && (k === 0 || k === 4))
+                ? [entry_a, entry_b, k, -n] : false,
             // 8ve swap (will equal "false" if not viable)
             oswap: oswap_gen([i, j, k, n]),
             seqs: getseqs([i, j, k, n])
@@ -149,7 +153,8 @@ function oswap_gen(a) {
 
     // make sure oswapped pattern is valid and non-redundant again
     if (model_check(swap[0], swap[1]) === false
-        || same_check(swap, a) === true)
+        || same_check(swap, a) === true
+        || (swap[2] === 11 & swap[3] === 4))
         return false;
 
     return swap;
@@ -516,6 +521,7 @@ function findPattern(A) {
         && pat[i].val[2] === A[2] && pat[i].val[3] === A[3])
         return i;
     }
+    return false;
 }
 
 function retroGoto(x) {
