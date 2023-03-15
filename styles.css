@@ -95,10 +95,6 @@ body {
     border-radius: 4px;
 }
 
-.vp-spacer {
-    height: 82px;
-}
-
 .wide-entry {
     width: 50px;
 }
@@ -165,11 +161,11 @@ body {
 
 #vp-buttons {
     height: 82px;
-    transform: translate(0%, 26.5%);
     display: inline-grid;
     vertical-align: middle;
-    grid-template-columns: repeat(4, 100px);
+    grid-template-columns: repeat(2, 100px);
     column-gap: 2px;
+    row-gap: 2px;
 }
 
 #left-col {
