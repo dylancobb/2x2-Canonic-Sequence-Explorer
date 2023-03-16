@@ -456,7 +456,7 @@ let modelExButton = document.getElementById("model-ex");
 let vpFlag = 0; // 0 = agnostic, 1 = all, 2 = not OVP, 3 = UVP only
 let seqFlag = new Array();
 
-showSeq();
+showJv();
 resetFlags();
 modelIncButtonUpdate();
 vpButtonUpdate();
@@ -517,16 +517,16 @@ function patternData(i) {
     const seqs = document.getElementById('seqs');
     switch (pat[i].seqs.length) {
         case 1:
-            seqs.innerHTML = `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[0][0]},${pat[i].seqs[0][1]})">${stringseqs(pat[i].seqs[0])}</span>`;
+            seqs.innerHTML = `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[0][0]},${pat[i].seqs[0][1]});showSeq();">${stringseqs(pat[i].seqs[0])}</span>`;
             break;
         case 2:
-            seqs.innerHTML = `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[0][0]},${pat[i].seqs[0][1]})">${stringseqs(pat[i].seqs[0])}</span>`
-            + "or" + `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[1][0]},${pat[i].seqs[1][1]})">${stringseqs(pat[i].seqs[1])}</span>`;
+            seqs.innerHTML = `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[0][0]},${pat[i].seqs[0][1]});showSeq();">${stringseqs(pat[i].seqs[0])}</span>`
+            + "or" + `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[1][0]},${pat[i].seqs[1][1]});showSeq();">${stringseqs(pat[i].seqs[1])}</span>`;
             break;
         case 3:
-            seqs.innerHTML = `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[0][0]},${pat[i].seqs[0][1]})">${stringseqs(pat[i].seqs[0])}</span>`
-            + `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[1][0]},${pat[i].seqs[1][1]})">${stringseqs(pat[i].seqs[1])}</span>`
-            + "or" + `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[2][0]},${pat[i].seqs[2][1]})">${stringseqs(pat[i].seqs[2])}</span>`
+            seqs.innerHTML = `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[0][0]},${pat[i].seqs[0][1]});showSeq();">${stringseqs(pat[i].seqs[0])}</span>`
+            + `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[1][0]},${pat[i].seqs[1][1]});showSeq();">${stringseqs(pat[i].seqs[1])}</span>`
+            + "or" + `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[2][0]},${pat[i].seqs[2][1]});showSeq();">${stringseqs(pat[i].seqs[2])}</span>`
             break;
     };
     const patternImage = document.getElementById('media-box');
