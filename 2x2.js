@@ -429,6 +429,7 @@ let jvFilterBox = document.getElementById("jv-filter");
 let entryFilterBox = document.getElementById("entry-filter");
 let modelFilterBox = document.getElementById("model-filter");
 let vpFilterBox = document.getElementById("vp-filter");
+let rootFilterBox = document.getElementById("root-filter");
 
 // set up arrays to track filters
 let jvFlag = new Array(14);
@@ -439,7 +440,7 @@ let modelIncButton = document.getElementById("model-inc");
 let modelExButton = document.getElementById("model-ex");
 let vpFlag = 0; // 0 = agnostic, 1 = all, 2 = not OVP, 3 = UVP only
 
-showVP();
+showRoot();
 resetFlags();
 modelIncButtonUpdate();
 vpButtonUpdate();
@@ -561,6 +562,7 @@ function hideAll() {
     entryFilterBox.style.display = "none";
     modelFilterBox.style.display = "none";
     vpFilterBox.style.display = "none";
+    rootFilterBox.style.display = "none";
 }
 
 // sets all filter buttons to their unselected colour
@@ -611,6 +613,15 @@ function showVP() {
     resetFilterButtons();
     document.getElementById("vp-toggle").style.backgroundColor = "#BB2F3D";
     document.getElementById("vp-toggle").style.color = "white";
+}
+
+// open the Seqs filter menu, close the rest
+function showRoot() {
+    hideAll();
+    rootFilterBox.style.display = "block";
+    resetFilterButtons();
+    document.getElementById("root-toggle").style.backgroundColor = "#BB2F3D";
+    document.getElementById("root-toggle").style.color = "white";
 }
 
 // reset all filter flags

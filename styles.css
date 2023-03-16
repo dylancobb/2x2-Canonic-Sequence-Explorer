@@ -65,6 +65,28 @@ body {
     border-radius: 4px;
 }
 
+.filter-button {
+    background-color: #ccc;
+    color: black;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0;
+    width: 60px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.narrow-button-dark {
+    background-color: #666;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0;
+    width: 60px;
+    height: 40px;
+    border-radius: 4px;
+}
+
 .rec-button-dark {
     background-color: #666;
     color: white;
@@ -76,11 +98,11 @@ body {
     border-radius: 4px;
 }
 
-.rec-button-dark:hover {
+.narrow-button-dark:hover, .rec-button-dark:hover {
     background-color: #999;
 }
 
-.rec-button-dark:active {
+.narrow-button-dark:active, .rec-button-dark:active {
     background-color: #aaa;
 }
 
@@ -113,12 +135,12 @@ body {
     align-self: center;
 }
 
-.square-button:hover, .rec-button:hover, .entry-button:hover, .vp-button:hover {
+.square-button:hover, .rec-button:hover, .filter-button:hover, .entry-button:hover, .vp-button:hover {
     background-color:#F1C6CA !important;
     color: black !important;
 }
 
-.square-button:active, .rec-button:active, .entry-button:active, .vp-button:active {
+.square-button:active, .rec-button:active, .filter-button:active, .entry-button:active, .vp-button:active {
     background-color:#D55864 !important;
     color: white !important;
 }
@@ -126,7 +148,7 @@ body {
 #filter-select {
     display: inline-grid;
     vertical-align: middle;
-    grid-template-columns: 80px 80px 80px;
+    grid-template-columns: 60px 60px 60px;
     column-gap: 2px;
     row-gap: 2px;
 }
@@ -168,6 +190,48 @@ body {
     row-gap: 2px;
 }
 
+#root-buttons {
+    height: 82px;
+    display: inline-grid;
+    vertical-align: middle;
+    grid-template-columns: repeat(2, 100px);
+    column-gap: 2px;
+    row-gap: 2px;
+}
+
+#input-boxes {
+    height: 82px;
+    display: inline-grid;
+    vertical-align: middle;
+    grid-template-columns: 40px 40px;
+    column-gap: 2px;
+    row-gap: 2px;
+}
+
+#first-seq-box, #second-seq-box {
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: large;
+    font-weight: bold;
+    border: 2px solid #666;
+    border-radius: 4px;
+    height: 40px;
+    width: 40px;
+    outline: none;
+}
+
+input[type="number"]:focus {
+    border:2px solid #D55864 !important;
+}
+
+#seq-list {
+    background-color: #ddd;
+    border: 1px solid #666;
+    border-radius: 4px;
+    height: 82px;
+    width: 300px;
+}
+
 #left-col {
     display: flex;
     flex-direction: column;
@@ -188,7 +252,7 @@ body {
     background-color:#ddd;
     overflow-y: auto;
     width: 150px;
-    height: 400px;
+    height: 350px;
 }
 
 #info {
@@ -336,4 +400,16 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+/* Remove arrows from number inputs in Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove arrows from number inputs in Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

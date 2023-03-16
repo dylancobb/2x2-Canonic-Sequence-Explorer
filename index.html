@@ -28,12 +28,12 @@
     <main>
         <div id="filter-list">
             <div id="filter-select">
-                <p class="rec-button" id="jv-toggle" onclick="showJv()"><em>Jv</em></p>
-                <p class="rec-button" id="entry-toggle" onclick="showEntry()">Entry</p>
-                <p class="rec-button" id="model-toggle" onclick="showModel()">Model</p>
-                <p class="rec-button" id="vp-toggle" onclick="showVP()">VP</p>
-                <p class="rec-button" id="root-toggle" onclick="showRoot()">Root</p>
-                <p class="rec-button-dark" id="filter-reset" onclick="filterReset()">Reset</p>
+                <p class="filter-button" id="jv-toggle" onclick="showJv()"><em>Jv</em></p>
+                <p class="filter-button" id="model-toggle" onclick="showModel()">Head</p>
+                <p class="filter-button" id="entry-toggle" onclick="showEntry()">Entry</p>
+                <p class="filter-button" id="vp-toggle" onclick="showVP()">VP</p>
+                <p class="filter-button" id="root-toggle" onclick="showRoot()">Seq.</p>
+                <p class="narrow-button-dark" id="filter-reset" onclick="filterReset()">AC</p>
             </div>
             <div id="jv-filter">
                 <span class="filter-label"><em>Jv</em></span>
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div id="model-filter">
-                <span class="filter-label">Model</span>
+                <span class="filter-label">Head</span>
                 <div id="model-buttons">
                     <p class="rec-button-dark" id="model-none" onclick="modelNone()">None</p>
                     <p class="rec-button" id="model-inc" onclick="modelInc()">Inc.</p>
@@ -117,6 +117,17 @@
                     <p class="vp-button" id="vp-all" onclick="vpAll()">All</p>
                     <p class="vp-button" id="vp-not-outer" onclick="vpNotOuter()">Not OVP</p>
                     <p class="vp-button" id="vp-upper" onclick="vpUpper()">UVP Only</p>
+                </div>
+            </div>
+            <div id="root-filter">
+                <span class="filter-label">Sequences:</span>
+                <div id="root-buttons">
+                    <div id="input-boxes">
+                        <input type="number" id="first-seq-box" name="first-seq-box">
+                        <input type="number" id="second-seq-box" name="second-seq-box">
+                        <p class="rec-button-dark" id="seq-add" onclick="addSeq()">Add</p>
+                    </div>
+                    <div id="seq-list"></div>
                 </div>
             </div>
         </div>
