@@ -3,6 +3,7 @@ This is an embedded JavaScript version of my 2x2 canonic sequence generator, int
 # TODO
 - add a help menu that explains how to use the tool
 - mobile-friendly interface
+- tooltips
 # In the future
 - text search
 - audio playback

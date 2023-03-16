@@ -434,7 +434,15 @@ function stringseqs(a) {
     // Antiromanesca
     || (a[0] === 3 && a[1] === -1)
     // descending 3rds
-    || (a[0] === -2 && a[1] === -2))
+    || (a[0] === -2 && a[1] === -2)
+    // descending 5ths + stationary
+    || (a[0] === 3 && a[1] === 0)
+    // ascending 5ths + stationary
+    || (a[0] === 0 && a[1] === -3)
+    // descending 3rds w/ interpolated Vs
+    || (a[0] === 2 && a[1] === -4)
+    // descending 3rds + stationary
+    || (a[0] === 0 && a[1] === -2))
     str += "★";
 
 	return str;
@@ -794,6 +802,29 @@ function pushSeq(a, b) {
         seqFlag.push([a, b]);
         applyFilters();
     }
+}
+
+// add all the starred sequences
+function addStars() {
+    pushSeq(1, 1);
+    pushSeq(-1, -1);
+    pushSeq(3, -4);
+    pushSeq(4, -3);
+    pushSeq(3, -2);
+    pushSeq(1, -3);
+    pushSeq(3, -1);
+    pushSeq(-2, -2);
+    pushSeq(3, 0);
+    pushSeq(0, -3);
+    pushSeq(2, -4);
+    pushSeq(0, -2);
+}
+
+// clear the added sequence list and refresh filters
+function clearSeqs() {
+    seqFlag = [];
+    clearSeqBubbles();
+    applyFilters();
 }
 
 function createSeqBubble(tag, a, b) {

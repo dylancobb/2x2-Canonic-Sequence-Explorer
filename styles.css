@@ -54,6 +54,17 @@ body {
     border-radius: 4px;
 }
 
+.square-button-dark {
+    background-color: #666;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+
 .rec-button {
     background-color: #ccc;
     color: black;
@@ -109,11 +120,13 @@ body {
     border-radius: 4px;
 }
 
-.narrow-button-dark:hover, .rec-button-dark:hover, .add-button:hover {
+.narrow-button-dark:hover, .rec-button-dark:hover, .add-button:hover,
+.square-button-dark:hover {
     background-color: #999;
 }
 
-.narrow-button-dark:active, .rec-button-dark:active, .add-button:hover {
+.narrow-button-dark:active, .rec-button-dark:active, .add-button:active,
+.square-button-dark:active {
     background-color: #aaa;
 }
 
@@ -205,7 +218,7 @@ body {
     height: 82px;
     display: inline-grid;
     vertical-align: middle;
-    grid-template-columns: repeat(2, 90px);
+    grid-template-columns: 90px 308px 40px;
     column-gap: 2px;
     row-gap: 2px;
 }
@@ -215,6 +228,15 @@ body {
     display: inline-grid;
     vertical-align: middle;
     grid-template-columns: 40px 40px;
+    column-gap: 2px;
+    row-gap: 2px;
+}
+
+#extra-boxes {
+    height: 82px;
+    display: inline-grid;
+    vertical-align: middle;
+    grid-template-columns: 40px;
     column-gap: 2px;
     row-gap: 2px;
 }
