@@ -451,20 +451,38 @@ let modelFilterBox = document.getElementById("model-filter");
 let vpFilterBox = document.getElementById("vp-filter");
 let seqFilterBox = document.getElementById("seq-filter");
 // make the input boxes function via the enter key as well as the mouse
-document.getElementById('first-seq-box')
-    .addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById('second-seq-box').focus();
-    }
-});
-document.getElementById('second-seq-box')
-    .addEventListener("keyup", function(event) {
-    event.preventDefault();
-    if (event.keyCode === 13) {
-        document.getElementById('seq-add').click();
-    }
-});
+document.getElementById('first-seq-box').addEventListener(
+    "keyup",
+    (event) => {
+        if (event.defaultPrevented) {
+            return; // Do nothing if the event was already processed
+        }
+        if (event.key === "Enter") {
+            document.getElementById('second-seq-box').focus();
+        } else {
+            return; // Quit when this doesn't handle the key event.
+        }
+        // Cancel the default action to avoid it being handled twice
+        event.preventDefault();
+        },
+        true
+);
+document.getElementById('second-seq-box').addEventListener(
+    "keyup",
+    (event) => {
+        if (event.defaultPrevented) {
+            return; // Do nothing if the event was already processed
+        }
+        if (event.key === "Enter") {
+            document.getElementById('seq-add').click();
+        } else {
+            return; // Quit when this doesn't handle the key event.
+        }
+        // Cancel the default action to avoid it being handled twice
+        event.preventDefault();
+        },
+        true
+);
 
 // set up arrays to track filters
 let jvFlag = new Array(14);
