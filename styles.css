@@ -98,11 +98,22 @@ body {
     border-radius: 4px;
 }
 
-.narrow-button-dark:hover, .rec-button-dark:hover {
+.add-button {
+    background-color: #666;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0;
+    width: 82px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.narrow-button-dark:hover, .rec-button-dark:hover, .add-button:hover {
     background-color: #999;
 }
 
-.narrow-button-dark:active, .rec-button-dark:active {
+.narrow-button-dark:active, .rec-button-dark:active, .add-button:hover {
     background-color: #aaa;
 }
 
@@ -190,11 +201,11 @@ body {
     row-gap: 2px;
 }
 
-#root-buttons {
+#seq-buttons {
     height: 82px;
     display: inline-grid;
     vertical-align: middle;
-    grid-template-columns: repeat(2, 100px);
+    grid-template-columns: repeat(2, 90px);
     column-gap: 2px;
     row-gap: 2px;
 }
@@ -230,6 +241,25 @@ input[type="number"]:focus {
     border-radius: 4px;
     height: 82px;
     width: 300px;
+    padding: 7px;
+    flex: 1;
+    display: flex;
+    overflow: auto;
+    flex-direction: row;
+    flex-flow: wrap;
+    row-gap: 0px;
+    align-content: start;
+    font-weight: normal;
+}
+
+.seq-bubble {
+    margin: 2px;
+    padding: 0;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background-color: #BB2F3D;
+    color: white;
+    box-shadow: 1px 1px 0px #666;
 }
 
 #left-col {
@@ -363,18 +393,18 @@ input[type="number"]:focus {
     padding: 0.6em 1.2em;
 }
 
-.pattern:hover, .pattern-link:hover {
+.pattern:hover, .pattern-link:hover, .seq-bubble:hover {
     background-color: #F1C6CA;
     color: black;
 }
 
-.pattern:active, .pattern-link:active {
+.pattern:active, .pattern-link:active, .seq-bubble:active {
     background-color: #D55864;
     color: white;
 }
 
 .pattern-link {
-    margin-left: 5px;
+    margin: 0 5px;
     padding: 3px 10px;
     border-radius: 20px;
     background-color: #ccc;

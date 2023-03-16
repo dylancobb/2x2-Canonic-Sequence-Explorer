@@ -32,7 +32,7 @@
                 <p class="filter-button" id="model-toggle" onclick="showModel()">Head</p>
                 <p class="filter-button" id="entry-toggle" onclick="showEntry()">Entry</p>
                 <p class="filter-button" id="vp-toggle" onclick="showVP()">VP</p>
-                <p class="filter-button" id="root-toggle" onclick="showRoot()">Seq.</p>
+                <p class="filter-button" id="seq-toggle" onclick="showSeq()">Seq.</p>
                 <p class="narrow-button-dark" id="filter-reset" onclick="filterReset()">AC</p>
             </div>
             <div id="jv-filter">
@@ -119,13 +119,13 @@
                     <p class="vp-button" id="vp-upper" onclick="vpUpper()">UVP Only</p>
                 </div>
             </div>
-            <div id="root-filter">
+            <div id="seq-filter">
                 <span class="filter-label">Sequences:</span>
-                <div id="root-buttons">
+                <div id="seq-buttons">
                     <div id="input-boxes">
                         <input type="number" id="first-seq-box" name="first-seq-box">
                         <input type="number" id="second-seq-box" name="second-seq-box">
-                        <p class="rec-button-dark" id="seq-add" onclick="addSeq()">Add</p>
+                        <p class="add-button" id="seq-add" onclick="addSeq()">Add</p>
                     </div>
                     <div id="seq-list"></div>
                 </div>

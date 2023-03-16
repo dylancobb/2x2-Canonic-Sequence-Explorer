@@ -429,7 +429,22 @@ let jvFilterBox = document.getElementById("jv-filter");
 let entryFilterBox = document.getElementById("entry-filter");
 let modelFilterBox = document.getElementById("model-filter");
 let vpFilterBox = document.getElementById("vp-filter");
-let rootFilterBox = document.getElementById("root-filter");
+let seqFilterBox = document.getElementById("seq-filter");
+// make the input boxes function via the enter key as well as the mouse
+document.getElementById('first-seq-box')
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById('second-seq-box').focus();
+    }
+});
+document.getElementById('second-seq-box')
+    .addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById('seq-add').click();
+    }
+});
 
 // set up arrays to track filters
 let jvFlag = new Array(14);
@@ -439,8 +454,9 @@ let modelIncFlag = true;
 let modelIncButton = document.getElementById("model-inc");
 let modelExButton = document.getElementById("model-ex");
 let vpFlag = 0; // 0 = agnostic, 1 = all, 2 = not OVP, 3 = UVP only
+let seqFlag = new Array();
 
-showRoot();
+showSeq();
 resetFlags();
 modelIncButtonUpdate();
 vpButtonUpdate();
@@ -501,16 +517,16 @@ function patternData(i) {
     const seqs = document.getElementById('seqs');
     switch (pat[i].seqs.length) {
         case 1:
-            seqs.innerHTML = stringseqs(pat[i].seqs[0]);
+            seqs.innerHTML = `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[0][0]},${pat[i].seqs[0][1]})">${stringseqs(pat[i].seqs[0])}</span>`;
             break;
         case 2:
-            seqs.innerHTML = stringseqs(pat[i].seqs[0])
-            + " or " + stringseqs(pat[i].seqs[1]);
+            seqs.innerHTML = `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[0][0]},${pat[i].seqs[0][1]})">${stringseqs(pat[i].seqs[0])}</span>`
+            + "or" + `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[1][0]},${pat[i].seqs[1][1]})">${stringseqs(pat[i].seqs[1])}</span>`;
             break;
         case 3:
-            seqs.innerHTML = stringseqs(pat[i].seqs[0])
-            + ", " + stringseqs(pat[i].seqs[1])
-            + ", or " + stringseqs(pat[i].seqs[2]);
+            seqs.innerHTML = `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[0][0]},${pat[i].seqs[0][1]})">${stringseqs(pat[i].seqs[0])}</span>`
+            + `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[1][0]},${pat[i].seqs[1][1]})">${stringseqs(pat[i].seqs[1])}</span>`
+            + "or" + `<span class="pattern-link" onclick="pushSeq(${pat[i].seqs[2][0]},${pat[i].seqs[2][1]})">${stringseqs(pat[i].seqs[2])}</span>`
             break;
     };
     const patternImage = document.getElementById('media-box');
@@ -562,7 +578,7 @@ function hideAll() {
     entryFilterBox.style.display = "none";
     modelFilterBox.style.display = "none";
     vpFilterBox.style.display = "none";
-    rootFilterBox.style.display = "none";
+    seqFilterBox.style.display = "none";
 }
 
 // sets all filter buttons to their unselected colour
@@ -575,8 +591,8 @@ function resetFilterButtons() {
     document.getElementById("model-toggle").style.color = "black";
     document.getElementById("vp-toggle").style.backgroundColor = "#ccc";
     document.getElementById("vp-toggle").style.color = "black";
-    document.getElementById("root-toggle").style.backgroundColor = "#ccc";
-    document.getElementById("root-toggle").style.color = "black";
+    document.getElementById("seq-toggle").style.backgroundColor = "#ccc";
+    document.getElementById("seq-toggle").style.color = "black";
 }
 
 // open the Jv filter menu, close the rest
@@ -616,12 +632,12 @@ function showVP() {
 }
 
 // open the Seqs filter menu, close the rest
-function showRoot() {
+function showSeq() {
     hideAll();
-    rootFilterBox.style.display = "block";
+    seqFilterBox.style.display = "block";
     resetFilterButtons();
-    document.getElementById("root-toggle").style.backgroundColor = "#BB2F3D";
-    document.getElementById("root-toggle").style.color = "white";
+    document.getElementById("seq-toggle").style.backgroundColor = "#BB2F3D";
+    document.getElementById("seq-toggle").style.color = "white";
 }
 
 // reset all filter flags
@@ -636,6 +652,15 @@ function resetFlags() {
         modelFlag[i] = true;
     }
     vpFlag = 0;
+    seqFlag = [];
+    clearSeqBubbles();
+}
+
+function clearSeqBubbles() {
+    const elements = document.getElementsByClassName("seq-bubble");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
 }
 
 // toggle the state of given Jv filters
@@ -711,12 +736,57 @@ function modelIncButtonUpdate() {
     }
 }
 
+function addSeq() {
+    // take user input, clear input, re-focus first input box for next entry
+    let a = document.getElementById('first-seq-box').value;
+    document.getElementById('first-seq-box').value = "";
+    let b = document.getElementById('second-seq-box').value;
+    document.getElementById('second-seq-box').value = "";
+    document.getElementById('first-seq-box').focus();
+    // prepare sequence from user input
+    [a, b] = cleanseq(a, b);
+    
+    pushSeq(a, b);
+}
+
+function pushSeq(a, b) {
+    const tag = stringseqs([a, b]);
+    if (!document.getElementById(tag)) {
+        createSeqBubble(tag, a, b);
+        seqFlag.push([a, b]);
+        applyFilters();
+    }
+}
+
+function createSeqBubble(tag, a, b) {
+    const newSeq = document.createElement("p");
+    newSeq.className = 'seq-bubble';
+    newSeq.id = tag;
+    newSeq.onclick = function () {
+        // delete bubble
+        document.getElementById(tag).remove();
+        // find the index of seqFlag that contains this sequence
+        for (let i = 0; i < seqFlag.length; i++) {
+            if (seqFlag[i][0] === a && seqFlag[i][1] === b)
+                // remove pattern from seqFlag
+                seqFlag.splice(i, 1);
+        }
+        applyFilters();
+    };
+
+    let node = document.createTextNode(tag);
+    newSeq.appendChild(node);
+
+    const element = document.getElementById("seq-list");
+    element.appendChild(newSeq);
+}
+
 // hides/shows patterns based on all flags
 function applyFilters() {
     count = 0;
     for (let i = 0; i < 256; i++) {
         let thisPat = document.getElementById("pattern" + i);
-        if(filterJv(i) && filterEntry(i) && modelEntry(i) && filterVP(i)) {
+        if(filterJv(i) && filterEntry(i) && modelEntry(i) && filterVP(i) && filterSeq(i)) {
             thisPat.style.display = "block";
             count++;
         } else {
@@ -847,7 +917,6 @@ function filterEntry(x) {
 
 // returns true if a given pattern matches the currently toggled model, else false
 function modelEntry(x) {
-    console.log(modelIncFlag);
     let exCounter = 0;
     for (let i = -7; i <= 7; i++) {
         if(modelIncFlag === true) {
@@ -897,6 +966,20 @@ function filterVP(x) {
     } else if (vpFlag === 3) {
         if (Math.abs(pat[x].val[2] % 7) === 3 || Math.abs(pat[x].val[3] % 7) === 3)
             return true;
+    }
+    return false;
+}
+
+// returns true if a given pattern matches the currently added sequences, else false
+function filterSeq(x) {
+    if (!seqFlag.length)
+        return true;
+    for (let i = 0; i < seqFlag.length; i++) {
+        for (let j = 0; j < pat[x].seqs.length; j++) {
+            if (seqFlag[i][0] === pat[x].seqs[j][0]
+            && seqFlag[i][1] === pat[x].seqs[j][1])
+                return true;
+        }
     }
     return false;
 }
