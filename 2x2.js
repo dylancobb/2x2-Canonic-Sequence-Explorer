@@ -417,6 +417,26 @@ function stringseqs(a) {
     } else {
         str += "S";
     }
+
+    // FLAG EXTREMELY UBIQUITOUS SEQUENCES
+    // ascending fauxbourdon
+    if ((a[0] === 1 && a[1] === 1)
+    // descending fauxbourdon
+    || (a[0] === -1 && a[1] === -1)
+    // descending 5ths
+    || (a[0] === 3 && a[1] === -4)
+    // ascending 5ths
+    || (a[0] === 4 && a[1] === -3)
+    // ascending 5-6 / Monte
+    || (a[0] === 3 && a[1] === -2)
+    // descending 5-6 / Romanesca
+    || (a[0] === 1 && a[1] === -3)
+    // Antiromanesca
+    || (a[0] === 3 && a[1] === -1)
+    // descending 3rds
+    || (a[0] === -2 && a[1] === -2))
+    str += "★";
+
 	return str;
 }
 
