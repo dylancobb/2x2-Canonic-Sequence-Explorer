@@ -782,6 +782,7 @@ function modelIncButtonUpdate() {
     }
 }
 
+// takes user input and adds a sequence to the filter list
 function addSeq() {
     // take user input, clear input, re-focus first input box for next entry
     let a = document.getElementById('first-seq-box').value;
@@ -795,6 +796,7 @@ function addSeq() {
     pushSeq(a, b);
 }
 
+// adds a sequence to the filter list, creates bubble, applies filters
 function pushSeq(a, b) {
     const tag = stringseqs([a, b]);
     if (!document.getElementById(tag)) {
@@ -827,6 +829,7 @@ function clearSeqs() {
     applyFilters();
 }
 
+// creates a new sequence bubble in the filter list
 function createSeqBubble(tag, a, b) {
     const newSeq = document.createElement("p");
     newSeq.className = 'seq-bubble';
@@ -1069,6 +1072,30 @@ function jvAll() {
     }
     applyFilters();
     jvButtonUpdate();
+}
+
+// shows just the 1JJv
+function jvFirstType() {
+    jvNone();
+    jvToggle(0);
+    jvToggle(7);
+    jvToggle(3);
+    jvToggle(10);
+    jvToggle(4);
+    jvToggle(11);
+}
+
+// shows just the 2JJv
+function jvSecondType() {
+    jvNone();
+    jvToggle(1);
+    jvToggle(2);
+    jvToggle(5);
+    jvToggle(6);
+    jvToggle(8);
+    jvToggle(9);
+    jvToggle(12);
+    jvToggle(13);
 }
 
 // set all entry toggles to off

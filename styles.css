@@ -181,10 +181,15 @@ body {
     display: none;
 }
 
+.super-adjust {
+    position: relative;
+    top: -2.5px;
+}
+
 #jv-buttons {
     display: inline-grid;
     vertical-align: middle;
-    grid-template-columns: 80px repeat(7, 40px);
+    grid-template-columns: 80px repeat(8, 40px);
     column-gap: 2px;
     row-gap: 2px;
 }
