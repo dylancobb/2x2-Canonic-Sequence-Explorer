@@ -1133,3 +1133,7 @@ function modelAll() {
     applyFilters();
     modelButtonUpdate();
 }
+
+function patRandom() {
+    patternData(Math.floor(Math.random() * 256));
+}

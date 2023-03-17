@@ -121,12 +121,12 @@ body {
 }
 
 .narrow-button-dark:hover, .rec-button-dark:hover, .add-button:hover,
-.square-button-dark:hover {
+.square-button-dark:hover, .misc-button:hover {
     background-color: #999;
 }
 
 .narrow-button-dark:active, .rec-button-dark:active, .add-button:active,
-.square-button-dark:active {
+.square-button-dark:active, .misc-button:active {
     background-color: #aaa;
 }
 
@@ -293,6 +293,26 @@ input[type="number"]:focus {
     display: flex;
     flex-direction: column;
     float: left;
+}
+
+#misc-menu {
+    height: 40px;
+    display: inline-grid;
+    vertical-align: middle;
+    grid-template-columns: 74px 74px;
+    column-gap: 2px;
+    margin-bottom: 2px;
+}
+
+.misc-button {
+    background-color: #666;
+    color: white;
+    text-align: center;
+    padding: 0.5em;
+    margin: 0;
+    width: 74px;
+    height: 40px;
+    border-radius: 4px;
 }
 
 #pat-num {
