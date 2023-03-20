@@ -8,8 +8,8 @@ This is an embedded JavaScript version of my 2x2 canonic sequence generator, int
 - add information about intrinsic potential for doubling at imperfect consonances
 - text search
 - audio playback
-- integrate VexFlow for dynamic on-the-fly notation via JavaScript
-- post-VexFlow integration: dynamic pattern elaboration tools
+- develop the notation rendering system more
+- dynamic pattern elaboration tools when the renderer is sophisticated enough
 - facility to test compatibility with another pattern with a different head but shared root sequence for double-canonic deployment, and generate the derivative requirements
 - MIDI / musicXML / LilyPond exporting
 - package into a native app with something like Tauri

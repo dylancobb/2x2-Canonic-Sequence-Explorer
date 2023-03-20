@@ -353,6 +353,13 @@ input[type="number"]:focus {
     height: 400px;
 }
 
+#myCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(30%) translate(-230px, -1100px);
+}
+
 #score-image {
     position: absolute;
     top: 75px;
