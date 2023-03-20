@@ -357,7 +357,7 @@ input[type="number"]:focus {
     position: absolute;
     top: 0;
     left: 0;
-    transform: scale(30%) translate(-230px, -1100px);
+    transform: scale(30%) translate(-230px, -1075px);
 }
 
 #score-image {

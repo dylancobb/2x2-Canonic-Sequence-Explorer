@@ -1200,8 +1200,8 @@ function placeNotes() {
         }
     }
     for (let i = 0; i < voiceOne.length; i++) {
-        noteUp(oneX[i] / timeTotal, voiceOne[i][0], hexRed, myOffset, myAlpha);
         noteDown(twoX[i] / timeTotal, voiceTwo[i][0], hexBlue, myOffset, myAlpha);
+        noteUp(oneX[i] / timeTotal, voiceOne[i][0], hexRed, myOffset, myAlpha);
     }
 
     if (myAlpha === 1) {
@@ -1269,7 +1269,7 @@ function drawNote(x, y, color) {
 // draw ledger lines as appropriate
 function drawLedger(x, y, alpha = 1) {
     ctx.strokeStyle = `rgba(0, 0, 0, ${alpha})`;
-    ctx.lineWidth = staffThickness * 3;
+    ctx.lineWidth = staffThickness * 2.5;
     ledgerX = myWidth * x;
     if (y > 5) {
         let baseLine = myHeight / 2 - 2 * lineHeight;
