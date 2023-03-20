@@ -1160,7 +1160,7 @@ const hexBlue = "#3C5EC4";
 let c = document.getElementById("myCanvas");
 myHeight = 6 * unitSize
 c.height = myHeight;
-myWidth = voiceOne.length * unitSize * 1.15;
+myWidth = 6 * unitSize * 1.15;
 c.width = myWidth;
 let ctx = c.getContext("2d");
 
@@ -1170,7 +1170,6 @@ drawStaff(0, myWidth);
 let intervId;
 let myOffset;
 let myAlpha;
-refreshScore();
 
 function refreshScore() {
     myOffset = 4;
