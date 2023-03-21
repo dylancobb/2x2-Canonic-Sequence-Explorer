@@ -1407,8 +1407,8 @@ function playPattern() {
     audioContext.close();
     audioContext = new AudioContext();
     for (let i = 0; i < voiceOne.length; i++) {
-        play(timing[i] / 6, DiaToChromatic(voiceOne[i][0]), 0.66, 1, 0)
-        play(timing[i] / 6, DiaToChromatic(voiceTwo[i][0]), 0.66, -1, 1)
+        play(timing[i] / 6, DiaToChromatic(voiceOne[i][0]), 0.66, 1, 1)
+        play(timing[i] / 6, DiaToChromatic(voiceTwo[i][0]), 0.66, -1, 0)
     }
 }
 
