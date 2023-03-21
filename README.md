@@ -7,7 +7,7 @@ This is an embedded JavaScript version of my 2x2 canonic sequence generator, int
 # Planned features
 - add information about intrinsic potential for doubling at imperfect consonances
 - text search
-- audio playback
+- better audio playback
 - develop the notation rendering system more
 - dynamic pattern elaboration tools when the renderer is sophisticated enough
 - facility to test compatibility with another pattern with a different head but shared root sequence for double-canonic deployment, and generate the derivative requirements

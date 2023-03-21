@@ -345,14 +345,6 @@ input[type="number"]:focus {
     vertical-align: top;
 }
 
-#media-box {
-    display: inline-flex;
-    position: relative;
-    top: 50px;
-    left: 50px;
-    height: 400px;
-}
-
 #myCanvas {
     position: absolute;
     top: 0;
@@ -360,11 +352,26 @@ input[type="number"]:focus {
     transform: scale(30%) translate(-230px, -1075px);
 }
 
-#score-image {
+#play-container {
     position: absolute;
-    top: 75px;
-    transform: translate(0%,-50%);
-    width: 300px;
+    top: 226px;
+    left: 415px;
+}
+
+#play-button {
+    padding: 10px 20px;
+    display: flex;
+    background-color: #BB2F3D;
+    color: white;
+    border-radius: 4px;
+}
+
+#play-button:hover {
+    background-color: #D55864;
+}
+
+#play-button:active {
+    background-color:#E28D95;
 }
 
 #pattern-name {

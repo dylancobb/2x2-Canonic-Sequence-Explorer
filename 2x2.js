@@ -591,6 +591,16 @@ function patternData(i) {
     } else {
         warningBox.innerHTML = '';
     }
+    const playButton = document.getElementById("play-container");
+    playButton.innerHTML =`<p id="play-button" onclick="playPattern()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+            <path
+                d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z">
+            </path>
+        </svg>
+    </p>`;
 }
 
 // takes a pattern array and finds its index (linear search)
@@ -1139,8 +1149,10 @@ function patRandom() {
     patternData(Math.floor(Math.random() * 256));
 }
 
+
 //====================================================================================
 //====================================================================================
+
 
 // test arrays to render
 let voiceOne = [[-4, 4], [-5, 4], [2, 4], [1, 4], [8, 4], [7, 4]];
@@ -1321,6 +1333,7 @@ function drawStemDown(x, y, color) {
     ctx.stroke();
 }
 
+// generate the first voice's melody (un-normalised)
 function getVoiceOne(i) {
     let voiceOneArray = [pat[i].val[2]];
     voiceOneArray.push(voiceOneArray[0] + pat[i].val[1]);
@@ -1331,6 +1344,7 @@ function getVoiceOne(i) {
     return voiceOneArray;
 }
 
+// generate the second voice's melody (un-normalised)
 function getVoiceTwo(i) {
     let voiceTwoArray = [0];
     voiceTwoArray.push(voiceTwoArray[0] + pat[i].val[0]);
@@ -1341,6 +1355,7 @@ function getVoiceTwo(i) {
     return voiceTwoArray;
 }
 
+// normalise the two voices about the central line of the staff, then print
 function showScore(x) {
     let unNormOne = getVoiceOne(x);
     let unNormTwo = getVoiceTwo(x);
@@ -1364,4 +1379,62 @@ function showScore(x) {
         voiceTwo.push([unNormTwo[i] + offset, 4]);
     }
     refreshScore();
+}
+
+
+//==================================================================================
+//==================================================================================
+
+
+let audioContext = new AudioContext();
+
+function DiaToChromatic(x) {
+    const scale = [-10, -8, -7, -5, -3, -1, 0, 2, 4, 5, 7, 9, 11];
+    x -= 1;
+    // get octaves
+    let oct = x >= 0 ? Math.floor(x / 7) : Math.ceil(x / 7);
+    // scale degree to semitones
+    let dia = scale[x % 7 + 6];
+
+    return (oct * 12) + dia;
+}
+
+function playPattern() {
+    let timing = [0];
+    for (let i = 1; i < voiceOne.length; i++) {
+        timing.push(timing[i-1] + voiceOne[i-1][1]);
+    }
+    console.log(timing);
+    audioContext.close();
+    audioContext = new AudioContext();
+    for (let i = 0; i < voiceOne.length; i++) {
+        play(timing[i] / 6, DiaToChromatic(voiceOne[i][0]), 0.66)
+        play(timing[i] / 6, DiaToChromatic(voiceTwo[i][0]), 0.66)
+    }
+}
+
+function stopPlaying() {
+    audioContext.close();
+}
+
+function play(delay, pitch, duration) {
+    let startTime = audioContext.currentTime + delay;
+    let endTime = startTime + duration;
+    let oscillator = audioContext.createOscillator();
+    let vol = audioContext.createGain();
+    let filter = audioContext.createBiquadFilter();
+    filter.connect(audioContext.destination);
+    oscillator.connect(vol).connect(filter);
+
+    filter.type = 'lowpass';
+    filter.frequency.value = 1000;
+    oscillator.type = "sawtooth";
+    vol.gain.value = 0.05;
+
+    oscillator.frequency.value = 440 * Math.pow(2, (pitch + 3) / 12);
+
+    // add audioContext.currentTime
+    oscillator.start(audioContext.currentTime + delay);
+    oscillator.stop(audioContext.currentTime + delay + duration);
+
 }
