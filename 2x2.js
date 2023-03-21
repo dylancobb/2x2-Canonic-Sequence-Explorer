@@ -1404,12 +1404,11 @@ function playPattern() {
     for (let i = 1; i < voiceOne.length; i++) {
         timing.push(timing[i-1] + voiceOne[i-1][1]);
     }
-    console.log(timing);
     audioContext.close();
     audioContext = new AudioContext();
     for (let i = 0; i < voiceOne.length; i++) {
-        play(timing[i] / 6, DiaToChromatic(voiceOne[i][0]), 0.66)
-        play(timing[i] / 6, DiaToChromatic(voiceTwo[i][0]), 0.66)
+        play(timing[i] / 6, DiaToChromatic(voiceOne[i][0]), 0.66, 1, 0)
+        play(timing[i] / 6, DiaToChromatic(voiceTwo[i][0]), 0.66, -1, 1)
     }
 }
 
@@ -1417,24 +1416,29 @@ function stopPlaying() {
     audioContext.close();
 }
 
-function play(delay, pitch, duration) {
+function play(delay, pitch, duration, panVal, oscType) {
     let startTime = audioContext.currentTime + delay;
     let endTime = startTime + duration;
     let oscillator = audioContext.createOscillator();
     let vol = audioContext.createGain();
     let filter = audioContext.createBiquadFilter();
-    filter.connect(audioContext.destination);
-    oscillator.connect(vol).connect(filter);
+    let pan = audioContext.createStereoPanner();
+    oscillator.connect(vol).connect(filter).connect(pan).connect(audioContext.destination);
 
     filter.type = 'lowpass';
-    filter.frequency.value = 1000;
-    oscillator.type = "sawtooth";
+    oscillator.type = oscType ? "sawtooth" : "triangle";
     vol.gain.value = 0.05;
+
+    pan.pan.value = panVal;
 
     oscillator.frequency.value = 440 * Math.pow(2, (pitch + 3) / 12);
 
     // add audioContext.currentTime
     oscillator.start(audioContext.currentTime + delay);
     oscillator.stop(audioContext.currentTime + delay + duration);
+    filter.frequency.setValueAtTime(oscType ? 1000 : 2000, audioContext.currentTime + delay);
+    filter.frequency.linearRampToValueAtTime(oscType ? 500 : 750, audioContext.currentTime + delay + duration);
+    vol.gain.setValueAtTime(0.06, audioContext.currentTime + delay);
+    vol.gain.exponentialRampToValueAtTime(0.06, audioContext.currentTime + delay + duration);
 
 }
