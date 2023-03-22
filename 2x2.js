@@ -1144,9 +1144,14 @@ function modelAll() {
     modelButtonUpdate();
 }
 
-// goes to a random pattern
+// goes to a random pattern from the currently filtered list
 function patRandom() {
-    patternData(Math.floor(Math.random() * 256));
+    let filterIndex = [];
+    for (let i = 0; i < 256; i++) {
+        if(filterJv(i) && filterEntry(i) && modelEntry(i) && filterVP(i) && filterSeq(i))
+            filterIndex.push(i);
+    }
+    patternData(filterIndex[Math.floor(Math.random() * filterIndex.length)]);
 }
 
 
