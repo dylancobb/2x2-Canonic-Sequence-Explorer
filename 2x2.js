@@ -601,6 +601,9 @@ function patternData(i) {
             </path>
         </svg>
     </p>`;
+    // Update the URL to reflect the currently displayed pattern
+    const newUrl = window.location.origin + window.location.pathname + '?pattern=' + i;
+    window.history.replaceState({}, '', newUrl);
 }
 
 // takes a pattern array and finds its index (linear search)
@@ -1447,3 +1450,10 @@ function play(delay, pitch, duration, panVal, oscType) {
     vol.gain.exponentialRampToValueAtTime(0.06, audioContext.currentTime + delay + duration);
 
 }
+
+// Get the pattern ID from the URL parameter
+const urlParams = new URLSearchParams(window.location.search);
+const patternId = urlParams.get('pattern');
+// if a pattern URL parameter is found, load that parameter
+if (patternId)
+    patternData(patternId);
